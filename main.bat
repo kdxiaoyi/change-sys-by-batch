@@ -1,5 +1,22 @@
 @echo off
-rem æ£€æµ‹ç³»ç»Ÿä½æ•°
+cls
+goto api_load
+
+:menu
+cls
+echo ^> Ö÷²Ëµ¥
+echo ===================================================================
+echo         Welcome to [Changing SYS by Bat]
+echo.
+echo.
+echo.
+echo.
+echo  Made by kdXiaoyi. 2022°æÈ¨ËùÓÐ
+echo ===================================================================
+echo SysBit=x%SysBit%
+
+:api_load
+rem ¼ì²âÏµÍ³Î»Êý
 set SysBit=UNKNOW
 if EXIST %windir%\SysWOW64\ (
     rem x64
@@ -9,3 +26,4 @@ if EXIST %windir%\SysWOW64\ (
     set SysBit=86
 )
 echo SysBit=x%SysBit%
+goto menu
