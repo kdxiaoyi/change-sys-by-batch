@@ -1,8 +1,11 @@
+rem 设置版本号
+set Appver=Dev.0.0.1.0
 goto HEAD
 
 :head
 @echo off
 cls
+title CSBB
 goto api_load
 
 :menu
@@ -24,7 +27,7 @@ if %ERRORLEVEL%==0 (
 )
 if %ERRORLEVEL%==255 (
     rem CHOICE.exe发出错误状态码
-    set ERRORCODE=API.Choice.ErrorEffect
+    set ERRORCODE=CSBB/API:Choice.ErrorEffect
     goto Error
 )
 goto menu
@@ -46,4 +49,27 @@ goto menu
 
 :Error
 rem 显示崩溃信息
-color 
+color FC
+title Stopped by a error ^| ERRORCODE^>%Errorcode%
+rem 写出崩溃信息
+set time2=%time%
+md "%temp%\CSBB\Crash\"
+set CrashFile="%temp%\CSBB\Crash-s\%time2%\"
+echo Crash Report >>%CrashFile%
+echo ================================================= >>%CrashFile%
+echo  ^> Oh,no,this is the 115414th crash report! >>%CrashFile%
+echo. >>%CrashFile%
+echo Time = %time2% >>%CrashFile%
+echo Errorcode = %errorcode% >>%CrashFile%
+echo SysBit = x%SysBit% >>%CrashFile%
+echo SysVer =  >>%CrashFile%
+Ver >>%CrashFile%
+echo Lang = %LANG% >>%CrashFile%
+echo SysDrive = %SystemDrive% >>%CrashFile%
+echo PROCESSOR ARCHITECTURE = %PROCESSOR_ARCHITECTURE% >>%CrashFile%
+echo OS Center = %OS% >>%CrashFile%
+echo Command Spec = %ComSpec% >>%CrashFile%
+echo Temp File = %temp% >>%CrashFile%
+echo App Ver = %AppVer% >>%CrashFile%
+echo. >>%CrashFile%
+echo Sub.End () >>%CrashFile%
