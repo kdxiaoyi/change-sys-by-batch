@@ -14,13 +14,14 @@ echo ^> 主菜单
 echo ===================================================================
 echo         Welcome to [Changing SYS by Bat]
 echo.
-echo.
+echo.    [1] 系统外观
+echo.    [2] 用户账户相关
 echo.
 echo.
 echo  Made by kdXiaoyi. 2022版权所有
 echo ===================================================================
 echo SysBit=x%SysBit%
-api\choice.exe /c p /N /M 从中选择一项^>
+api\choice.exe /c P12 /N /M 从中选择一项^>
 if %ERRORLEVEL%==0 (
     rem 用户中断操作。
     echo NO TRUE CHOICE INTUT
@@ -35,7 +36,78 @@ if %ERRORLEVEL%==1 (
     set errorcode=CSBB/main:Debug.BOOM
     goto error
 )
+if %ERRORLEVEL%==2 goto sys_show_menu
+if %ERRORLEVEL%==3 goto user_menu
 goto menu
+
+:sys_show_menu
+cls
+echo ^> 系统外观菜单
+echo ===================================================================
+echo         Welcome to [Changing SYS by Bat]
+echo.
+echo.    [1] 禁用快捷方式小箭头
+echo.    [2] 启用↑
+echo.
+echo.    [0] 返回
+echo  Made by kdXiaoyi. 2022版权所有
+echo ===================================================================
+echo SysBit=x%SysBit%
+api\choice.exe /c 012 /N /M 从中选择一项^>
+echo.
+if %ERRORLEVEL%==2 (
+    rem 杀桌面管理器进程
+    echo 警告！ 这将会禁用Aero或毛玻璃效果一段时间，没有恢复请自行前往[个性化]启用！
+    echo.
+    taskkill /f /im explorer.exe
+    taskkill /f /im dwm.exe
+    reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Shell Icons" /v 29 /d "%systemroot%\system32\imageres.dll,196" /t reg_sz /f
+    attrib -s -r -h "%userprofile%\AppData\Local\iconcache.db"
+    rem 修改iconcache文件
+    ren "%userprofile%\AppData\Local\iconcache.db" "%userprofile%\AppData\Local\iconcache_BANNED.db"
+    attrib +s +r +h "%userprofile%\AppData\Local\iconcache_BANNED.db"
+    start explorer.exe
+    start dwm.exe
+    echo Change Ok.
+    pause
+    goto sys_show_menu
+)
+if %ERRORLEVEL%==3 (
+    rem 杀桌面管理器进程
+    echo 警告！ 这将会禁用Aero或毛玻璃效果一段时间，没有恢复请自行前往[个性化]启用！
+    echo.
+    taskkill /f /im explorer.exe
+    taskkill /f /im dwm.exe
+    reg delete "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Shell Icons" /v 29 /f
+    attrib -s -r -h "%userprofile%\AppData\Local\iconcache_BANNED.db"
+    rem 修改iconcache文件
+    ren "%userprofile%\AppData\Local\iconcache_BANNED.db" "%userprofile%\AppData\Local\iconcache.db"
+    attrib +s +r +h "%userprofile%\AppData\Local\iconcache.db"
+    start explorer.exe
+    start dwm.exe
+    echo Change Ok.
+    pause
+    goto sys_show_menu
+)
+if %ERRORLEVEL%==1 goto menu
+goto sys_show_menu
+
+:user_menu
+cls
+echo ^> 用户账户
+echo ===================================================================
+echo         Welcome to [Changing SYS by Bat]
+echo.
+echo.    [1]
+echo.
+echo.
+echo.    [0] 返回
+echo  Made by kdXiaoyi. 2022版权所有
+echo ===================================================================
+echo SysBit=x%SysBit%
+api\choice.exe /c 0 /N /M 从中选择一项^>
+if %ERRORLEVEL%==1 goto menu
+goto user_menu
 
 :api_load
 rem 检测系统位数
@@ -57,9 +129,7 @@ color F4
 title Stopped by a error ^| ERRORCODE^>%Errorcode%
 rem 写出崩溃信息
 set i=1
-api\GetGuid.exe>>"%temp%\guid.g"
-set GUID=<"%temp%\guid.g"
-set CrashFile="%temp%\CSBB\Crash-s\%GUID%\"
+set CrashFile="%temp%\CSBB\Crash-s\%Random%%Random%%Random%%Random%%Random%\"
 md %CrashFile%
 echo Crash Report >>"%CrashFile%\CRASH_REPORT.log"
 echo ================================================= >>"%CrashFile%\CRASH_REPORT.log"
