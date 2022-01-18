@@ -56,10 +56,9 @@ rem 显示崩溃信息
 color F4
 title Stopped by a error ^| ERRORCODE^>%Errorcode%
 rem 写出崩溃信息
-set time2=%time%
 set i=1
-md "%temp%CSBB\Crash\"
-set CrashFile="%temp%CSBB\Crash-s\%time2%\"
+set CrashFile="%temp%\CSBB\Crash-s\\"
+md %CrashFile%
 echo Crash Report >>"%CrashFile%\CRASH_REPORT.log"
 echo ================================================= >>"%CrashFile%\CRASH_REPORT.log"
 set i=20
@@ -97,6 +96,5 @@ echo            E-Mail Address : popo0713@foxmail.com
 echo            Stop code : %errorcode%
 echo.
 echo  Any key to open error info.
-echo %CrashFile%
 pause>nul
-%CrashFile%
+api\OpenURL.exe -e -u %CrashFile%
