@@ -57,7 +57,9 @@ color F4
 title Stopped by a error ^| ERRORCODE^>%Errorcode%
 rem Ð´³ö±ÀÀ£ÐÅÏ¢
 set i=1
-set CrashFile="%temp%\CSBB\Crash-s\\"
+api\GetGuid.exe>>"%temp%\guid.g"
+set GUID=<"%temp%\guid.g"
+set CrashFile="%temp%\CSBB\Crash-s\%GUID%\"
 md %CrashFile%
 echo Crash Report >>"%CrashFile%\CRASH_REPORT.log"
 echo ================================================= >>"%CrashFile%\CRASH_REPORT.log"
@@ -77,6 +79,8 @@ echo OS Center = %OS% >>"%CrashFile%\CRASH_REPORT.log"
 echo Command Spec = %ComSpec% >>"%CrashFile%\CRASH_REPORT.log"
 echo Temp File = %temp% >>"%CrashFile%\CRASH_REPORT.log"
 echo App Ver = %AppVer% >>"%CrashFile%\CRASH_REPORT.log"
+echo CPU NAME = %PROCESSOR_ARCHITECTURE% >>"%CrashFile%\CRASH_REPORT.log"
+echo CPU INFO = %PROCESSOR_ARCHITEW6432% >>"%CrashFile%\CRASH_REPORT.log"
 echo. >>"%CrashFile%\CRASH_REPORT.log"
 set i=98
 echo Sub.End () >>"%CrashFile%\CRASH_REPORT.log"
