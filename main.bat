@@ -20,7 +20,7 @@ if EXIST %windir%\SysWOW64\ (
 )
 echo SysBit=x%SysBit%
 rem 初始化API调用
-goto menu
+goto CSBB/menu
 
 :Error
 rem 显示崩溃信息
@@ -73,7 +73,25 @@ pause>nul
 api\OpenURL.exe -e -u %CrashFile%
 exit
 
-:menu
+:CSBB/exit
+set input=%random%
+cls
+echo ^> EXIT
+echo ===================================================================
+echo.
+echo         您确定要退出？
+echo.
+echo  键入[Y]并回车以完成操作。
+echo.
+echo Made by kdXiaoyi. 2022版权所有
+echo ===================================================================
+echo SysBit=x%sysbit%
+set input=^> 
+if "%input%"=="Y" goto :EOF
+if "%input%"=="y" goto :EOF
+goto CSBB/menu
+
+:CSBB/menu
 cls
 echo ^> 主菜单
 echo ===================================================================
@@ -105,8 +123,8 @@ if %ERRORLEVEL%==1 (
 if %ERRORLEVEL%==2 goto sys_show/menu
 if %ERRORLEVEL%==3 goto user/menu
 if %ERRORLEVEL%==4 goto CSBB/about
-if %ERRORLEVEL%==5 goto menu.exit
-if %ERRORLEVEL%==6 goto menu.exit
+if %ERRORLEVEL%==5 goto CSBB/exit
+if %ERRORLEVEL%==6 goto CSBB/exit
 goto menu
 
 :sys_show/menu
@@ -160,7 +178,7 @@ if %ERRORLEVEL%==3 (
     goto sys_show_menu
 )
 if %ERRORLEVEL%==4 call SubBatch\display_yjmenu.bat
-if %ERRORLEVEL%==1 goto menu
+if %ERRORLEVEL%==1 goto CSBB/menu
 goto sys_show_menu
 
 :user/menu
@@ -177,5 +195,5 @@ echo  Made by kdXiaoyi. 2022版权所有
 echo ===================================================================
 echo SysBit=x%SysBit%
 api\choice.exe /c 0 /N /M 从中选择一项^>
-if %ERRORLEVEL%==1 goto menu
+if %ERRORLEVEL%==1 goto CSBB/menu
 goto user_menu
