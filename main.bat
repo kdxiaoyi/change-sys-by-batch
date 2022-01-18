@@ -1,5 +1,5 @@
 rem 设置版本号
-set Appver=Dev.0.0.1.0
+set Appver=Dev.2022.4b
 goto HEAD
 
 :head
@@ -17,11 +17,12 @@ echo.
 echo.    [1] 系统外观
 echo.    [2] 用户账户相关
 echo.
-echo.
+echo.    [A] About us
+echo     [Q/E] EXIT
 echo  Made by kdXiaoyi. 2022版权所有
 echo ===================================================================
 echo SysBit=x%SysBit%
-api\choice.exe /c P12 /N /M 从中选择一项^>
+api\choice.exe /c P12AQE /N /M 从中选择一项^>
 if %ERRORLEVEL%==0 (
     rem 用户中断操作。
     echo NO TRUE CHOICE INTUT
@@ -36,11 +37,14 @@ if %ERRORLEVEL%==1 (
     set errorcode=CSBB/main:Debug.BOOM
     goto error
 )
-if %ERRORLEVEL%==2 goto sys_show_menu
-if %ERRORLEVEL%==3 goto user_menu
+if %ERRORLEVEL%==2 goto sys_show/menu
+if %ERRORLEVEL%==3 goto user/menu
+if %ERRORLEVEL%==4 goto user/menu
+if %ERRORLEVEL%==5 goto menu.exit
+if %ERRORLEVEL%==6 goto menu.exit
 goto menu
 
-:sys_show_menu
+:sys_show/menu
 cls
 echo ^> 系统外观菜单
 echo ===================================================================
@@ -48,12 +52,13 @@ echo         Welcome to [Changing SYS by Bat]
 echo.
 echo.    [1] 禁用快捷方式小箭头
 echo.    [2] 启用↑
+echo     [3] 右键菜单中的显卡设置菜单管理
 echo.
 echo.    [0] 返回
 echo  Made by kdXiaoyi. 2022版权所有
 echo ===================================================================
 echo SysBit=x%SysBit%
-api\choice.exe /c 012 /N /M 从中选择一项^>
+api\choice.exe /c 0123 /N /M 从中选择一项^>
 echo.
 if %ERRORLEVEL%==2 (
     rem 杀桌面管理器进程
@@ -89,10 +94,11 @@ if %ERRORLEVEL%==3 (
     pause
     goto sys_show_menu
 )
+if %ERRORLEVEL%==4 call SubBatch\display_yjmenu.bat
 if %ERRORLEVEL%==1 goto menu
 goto sys_show_menu
 
-:user_menu
+:user/menu
 cls
 echo ^> 用户账户
 echo ===================================================================
