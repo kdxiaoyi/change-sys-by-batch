@@ -11,7 +11,7 @@ echo     ^> %password% ^<
 echo.
 set /p input=Captcha Code Here ^> 
 echo.
-if "%password%"==%input% (
+if "%password%"=="%input%" (
     echo Good captcha code
     echo.
     echo unREGSVRing igfxpph.dll ...

@@ -73,10 +73,9 @@ pause>nul
 api\OpenURL.exe -e -u %CrashFile%
 exit
 
-:CSBB/exit
-set input=%random%
+:CSBB/exit.sure
 cls
-echo ^> EXIT
+echo ^> EXIT Screen
 echo ===================================================================
 echo.
 echo         您确定要退出？
@@ -86,9 +85,9 @@ echo.
 echo Made by kdXiaoyi. 2022版权所有
 echo ===================================================================
 echo SysBit=x%sysbit%
-set input=^> 
-if "%input%"=="Y" goto :EOF
-if "%input%"=="y" goto :EOF
+set /p input=^> 
+if "%input%"=="Y" exit
+if "%input%"=="y" exit
 goto CSBB/menu
 
 :CSBB/menu
@@ -98,7 +97,7 @@ echo ===================================================================
 echo         Welcome to [Changing SYS by Bat]
 echo.
 echo.    [1] 系统外观
-echo.    [2] 用户账户相关
+echo.    [2] 系统实用
 echo.
 echo.    [A] About us
 echo     [Q/E] EXIT
@@ -121,10 +120,10 @@ if %ERRORLEVEL%==1 (
     goto error
 )
 if %ERRORLEVEL%==2 goto sys_show/menu
-if %ERRORLEVEL%==3 goto user/menu
+if %ERRORLEVEL%==3 goto sysUsefull/menu
 if %ERRORLEVEL%==4 goto CSBB/about
-if %ERRORLEVEL%==5 goto CSBB/exit
-if %ERRORLEVEL%==6 goto CSBB/exit
+if %ERRORLEVEL%==5 goto CSBB/exit.sure
+if %ERRORLEVEL%==6 goto CSBB/exit.sure
 goto menu
 
 :sys_show/menu
@@ -181,19 +180,35 @@ if %ERRORLEVEL%==4 call SubBatch\display_yjmenu.bat
 if %ERRORLEVEL%==1 goto CSBB/menu
 goto sys_show_menu
 
-:user/menu
+:sysUsefull/menu
 cls
-echo ^> 用户账户
+echo ^> 系统实用
 echo ===================================================================
 echo         Welcome to [Changing SYS by Bat]
 echo.
-echo.    [1]
+echo.    [C] 清理垃圾
 echo.
 echo.
 echo.    [0] 返回
 echo  Made by kdXiaoyi. 2022版权所有
 echo ===================================================================
 echo SysBit=x%SysBit%
-api\choice.exe /c 0 /N /M 从中选择一项^>
+api\choice.exe /c 0C /N /M 从中选择一项^>
 if %ERRORLEVEL%==1 goto CSBB/menu
+if %ERRORLEVEL%==2 (
+    cls
+    echo.
+    echo  清理垃圾中...
+    echo.
+    rem temp目录
+    erase %temp%\*.* -q -s
+    erase %tmp%\*.* -q -s
+    rem .TMP/log 文件
+    del C:\*.tmp -q -s
+    del D:\*.log -q -s
+    del C:\*.tmp -q -s
+    del D:\*.log -q -s
+    rem 常见缓存目录
+    erase %windir%\temp\*.* -q -s
+)
 goto user_menu
