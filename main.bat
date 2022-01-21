@@ -62,7 +62,7 @@ echo .
 echo     This program ran into a problem and needs to restart. We're just
 echo     collecting some error info, and then we'll show them for you.
 echo.
-echo      %i%% complete
+echo      %i% % complete
 echo.
 echo            If you want to feed back, give me this info:
 echo            E-Mail Address : popo0713@foxmail.com
@@ -132,15 +132,15 @@ echo ^> 系统外观菜单
 echo ===================================================================
 echo         Welcome to [Changing SYS by Bat]
 echo.
-echo.    [1] 禁用快捷方式小箭头
-echo.    [2] 启用↑
-echo     [3] 右键菜单中的显卡设置菜单管理
+echo.    [A] 禁用快捷方式小箭头
+echo.    [B] 启用↑
+echo     [1] 右键菜单中的显卡设置菜单管理
 echo.
 echo.    [0] 返回
 echo  Made by kdXiaoyi. 2022版权所有
 echo ===================================================================
 echo SysBit=x%SysBit%
-api\choice.exe /c 0123 /N /M 从中选择一项^>
+api\choice.exe /c 0AB1 /N /M 从中选择一项^>
 echo.
 if %ERRORLEVEL%==2 (
     rem 杀桌面管理器进程
@@ -166,9 +166,9 @@ if %ERRORLEVEL%==3 (
     taskkill /f /im explorer.exe
     taskkill /f /im dwm.exe
     reg delete "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Shell Icons" /v 29 /f
-    attrib -s -r -h "%userprofile%\AppData\Local\iconcache_BANNED.db"
+    attrib -s -r -h "%userprofile%\AppData\Local\iconcache.db"
     rem 修改iconcache文件
-    ren "%userprofile%\AppData\Local\iconcache_BANNED.db" "%userprofile%\AppData\Local\iconcache.db"
+    del /q "%userprofile%\AppData\Local\iconcache.db"
     attrib +s +r +h "%userprofile%\AppData\Local\iconcache.db"
     start explorer.exe
     start dwm.exe
@@ -186,14 +186,14 @@ echo ^> 系统实用
 echo ===================================================================
 echo         Welcome to [Changing SYS by Bat]
 echo.
+echo.    [A] Android Debug Bridge
 echo.    [C] 清理垃圾
-echo.
 echo.
 echo.    [0] 返回
 echo  Made by kdXiaoyi. 2022版权所有
 echo ===================================================================
 echo SysBit=x%SysBit%
-api\choice.exe /c 0C /N /M 从中选择一项^>
+api\choice.exe /c 0CA /N /M 从中选择一项^>
 if %ERRORLEVEL%==1 goto CSBB/menu
 if %ERRORLEVEL%==2 (
     cls
@@ -201,14 +201,15 @@ if %ERRORLEVEL%==2 (
     echo  清理垃圾中...
     echo.
     rem temp目录
-    erase %temp%\*.* -q -s
-    erase %tmp%\*.* -q -s
+    del %temp%\*.* /q
+    del %tmp%\*.* /q
     rem .TMP/log 文件
-    del C:\*.tmp -q -s
-    del D:\*.log -q -s
-    del C:\*.tmp -q -s
-    del D:\*.log -q -s
+    del C:\*.tmp /q
+    del D:\*.log /q
+    del C:\*.tmp /q
+    del D:\*.log /q
     rem 常见缓存目录
-    erase %windir%\temp\*.* -q -s
+    del %windir%\temp\*.* /q
 )
-goto user_menu
+if %ERRORLEVEL%==3 call SubBatch\Android_Debug_Bridge.bat
+goto sysUsefull/menu
