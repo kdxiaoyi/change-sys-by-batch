@@ -31,7 +31,7 @@ echo.    [3] 将Adb注册到系统(这样你就可以在任何地方打开adb了)
 echo.    [4] 终止ADB Daemon Service
 echo.
 echo     [0] EXIT
-echo  Made by kdXiaoyi. 2022版权所有
+echo  Made by kdXiaoyi. %y%版权所有
 echo ===================================================================
 echo SysBit=x%sysbit%
 api\choice.exe /c 12304 /N /M 从中选择一项^>
@@ -51,9 +51,10 @@ if %ERRORLEVEL%==4 call main.bat
 if %ERRORLEVEL%==5 (
     echo STOPPING SERVICE ...
     tasklist /FI "imagename eq adb.exe"
+    for /F "delims=, tokens=2" %%i IN ('tasklist /fo csv /fi "imagename eq adb.exe" /nh') DO api\ntsd.exe -c q -p %%i
+rem ↑FOR /F "options"          %variable IN ('command')                                   DO command command-parameters
     echo.
-    taskkill /f /im adb.exe
-    echo OKAY.
+    echo Finish Work
     ping 127.0.0.1 -n 4 >nul
     goto menu
 )
@@ -125,3 +126,41 @@ echo.
 goto fb
 
 :reg
+set i=
+cls
+echo.
+echo   请稍后……我们正在处理请求……
+echo.
+echo 1/%i%^> Stop ADB Daemon Service .
+tasklist /FI "imagename eq adb.exe"
+for /F "delims=, tokens=2" %%i IN ('tasklist /fo csv /fi "imagename eq adb.exe" /nh') DO api\ntsd.exe -c q -p %%i
+echo 2/%i%^> Copy Adb files .
+copy api\Android_Debug_Bridge\adb.exe %windir%\system32\
+copy api\Android_Debug_Bridge\fastboot.exe %windir%\system32\
+copy api\Android_Debug_Bridge\AdbWinUsbApi.dll %windir%\system32\
+copy api\Android_Debug_Bridge\AdbWinUsbApi.dll %windir%\system32\
+echo 3/%i%^> Output log .
+echo Android Debug Bridge >>%windir%\system32\Adb.setup_log.txt
+echo  ^>Setup Time >>%windir%\system32\Adb.setup_log.txt
+echo    %time% >>%windir%\system32\Adb.setup_log.txt
+echo  ^>the Number of adb files >>%windir%\system32\Adb.setup_log.txt
+echo    4 files >>%windir%\system32\Adb.setup_log.txt
+echo     - adb.exe >>%windir%\system32\Adb.setup_log.txt
+echo     - fastboot.exe >>%windir%\system32\Adb.setup_log.txt
+echo     - adbwinapi.dll >>%windir%\system32\Adb.setup_log.txt
+echo     - adbwinusbapi.dll >>%windir%\system32\Adb.setup_log.txt
+echo  ^>the SHA256 of adb files (Only data) >>%windir%\system32\Adb.setup_log.txt
+echo     - adb.exe          ^<-^> 4B15C1632B0FA74AD114EA963B9D34099728E536DA5B31D80A28F6AFD7029A65 >>%windir%\system32\Adb.setup_log.txt
+echo     - fastboot.exe     ^<-^> 342169964160EB3A831AF06BC1662E4166ED45565F798AA1C1609659ED9392FC >>%windir%\system32\Adb.setup_log.txt
+echo     - adbwinapi.dll    ^<-^> C70AAEAB8F8D3D2BBFB7E868E82D5F184504BBB2FB721C517D436CCFB5B8CB41 >>%windir%\system32\Adb.setup_log.txt
+echo     - adbwinusbapi.dll ^<-^> FB7161D37CC56CB570979E09D76A399208968F3B60E2C31C5B8CC90D42C2C113 >>%windir%\system32\Adb.setup_log.txt
+echo. >>%windir%\system32\Adb.setup_log.txt
+echo. >>%windir%\system32\Adb.setup_log.txt
+echo. >>%windir%\system32\Adb.setup_log.txt
+echo Setup Tool made by Bilibili@kdXiaoyi (Home papge : space.bilibili.com/1987247870) >>%windir%\system32\Adb.setup_log.txt
+echo.
+echo Setup Okay
+echo.
+ping 127.0.0.1 -n 6 >nul
+notepad.exe Adb.setup_log.txt
+goto menu

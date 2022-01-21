@@ -1,5 +1,6 @@
 rem 设置版本号
 set Appver=Dev.2022.4b
+set y=2022
 goto HEAD
 
 :head
@@ -83,7 +84,7 @@ echo         您确定要退出？
 echo.
 echo  键入[Y]并回车以完成操作。
 echo.
-echo Made by kdXiaoyi. 2022版权所有
+echo Made by kdXiaoyi. %y%版权所有
 echo ===================================================================
 echo SysBit=x%sysbit%
 set /p input=^> 
@@ -102,7 +103,7 @@ echo.    [2] 系统实用
 echo.
 echo.    [A] About us
 echo     [Q/E] EXIT
-echo  Made by kdXiaoyi. 2022版权所有
+echo  Made by kdXiaoyi. %y%版权所有
 echo ===================================================================
 echo SysBit=x%SysBit%
 api\choice.exe /c P12AQE /N /M 从中选择一项^>
@@ -138,7 +139,7 @@ echo.    [B] 启用↑
 echo     [1] 右键菜单中的显卡设置菜单管理
 echo.
 echo.    [0] 返回
-echo  Made by kdXiaoyi. 2022版权所有
+echo  Made by kdXiaoyi. %y%版权所有
 echo ===================================================================
 echo SysBit=x%SysBit%
 api\choice.exe /c 0AB1 /N /M 从中选择一项^>
@@ -191,7 +192,7 @@ echo.    [A] Android Debug Bridge
 echo.    [C] 清理垃圾
 echo.
 echo.    [0] 返回
-echo  Made by kdXiaoyi. 2022版权所有
+echo  Made by kdXiaoyi. %y%版权所有
 echo ===================================================================
 echo SysBit=x%SysBit%
 api\choice.exe /c 0CA /N /M 从中选择一项^>
