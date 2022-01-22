@@ -7,7 +7,7 @@ goto HEAD
 @echo off
 cls
 title CSBB
-goto CSBB/api.load
+goto getUACAdmin
 
 :CSBB/api.load
 rem 检测系统位数
@@ -22,6 +22,28 @@ if EXIST %windir%\SysWOW64\ (
 echo SysBit=x%SysBit%
 rem 初始化API调用
 goto CSBB/menu
+
+:getUACAdmin
+@REM rem 配置path路径
+@REM if exist "%SystemRoot%\SysWOW64" path %path%;%windir%\SysNative;%SystemRoot%\SysWOW64;%~dp0
+rem 通过访问bcd的方法判断是否有UAC管理员权限
+bcdedit >>nul
+echo %RunByNoAdmin%
+if "%RunByNoAdmin%"=="1" goto CSBB/api.load
+set RunByNoAdmin=0
+if '%errorlevel%' NEQ '0' (goto UACPrompt) else (goto UACAdmin)
+
+:UACPrompt
+rem 通过VBS方法得到UAC管理员权限
+rem mshta是一个快速执行JS/VBS脚本的命令行工具
+%1 start "CSBB/GetUACAdmin:getting" mshta vbscript:createobject("shell.application").shellexecute("""%~0""","::",,"runas",1)(window.close)&exit
+exit 0
+
+:UACAdmin
+cd /d "%~dp0"
+echo 当前运行路径是：%CD%
+echo 已获取管理员权限
+goto CSBB/api.load
 
 :Error
 rem 显示崩溃信息
