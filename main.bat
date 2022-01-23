@@ -97,6 +97,18 @@ pause>nul
 api\OpenURL.exe -e -u %CrashFile%
 exit
 
+:CSBB/about
+cls
+echo ^> About us
+echo ===================================================================
+more /e /p < texts\about_us.helptext
+echo ===================================================================
+echo SysBit=x%sysbit%
+echo.
+echo 任意键返回……
+pause>nul
+goto CSBB/menu
+
 :CSBB/exit.sure
 cls
 echo ^> EXIT Screen
@@ -212,12 +224,13 @@ echo         Welcome to [Changing SYS by Bat]
 echo.
 echo.    [A] Android Debug Bridge
 echo.    [C] 清理垃圾
+echo     [N] Ntsd - Microsoft Windows Debugger
 echo.
 echo.    [0] 返回
 echo  Made by kdXiaoyi. %y%版权所有
 echo ===================================================================
 echo SysBit=x%SysBit%
-api\choice.exe /c 0CA /N /M 从中选择一项^>
+api\choice.exe /c 0CAN /N /M 从中选择一项^>
 if %ERRORLEVEL%==1 goto CSBB/menu
 if %ERRORLEVEL%==2 (
     cls
