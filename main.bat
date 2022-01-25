@@ -101,10 +101,8 @@ exit
 cls
 echo ^> About us
 echo ===================================================================
-more /e /p < texts\about_us.helptext
+more /e /p +4 < texts\about_us.helptext
 echo ===================================================================
-echo SysBit=x%sysbit%
-echo.
 echo ÈÎÒâ¼ü·µ»Ø¡­¡­
 pause>nul
 goto CSBB/menu
@@ -160,7 +158,7 @@ if %ERRORLEVEL%==3 goto sysUsefull/menu
 if %ERRORLEVEL%==4 goto CSBB/about
 if %ERRORLEVEL%==5 goto CSBB/exit.sure
 if %ERRORLEVEL%==6 goto CSBB/exit.sure
-goto menu
+goto CSBB/menu
 
 :sys_show/menu
 cls
@@ -249,4 +247,5 @@ if %ERRORLEVEL%==2 (
     del %windir%\temp\*.* /q
 )
 if %ERRORLEVEL%==3 call SubBatch\Android_Debug_Bridge.bat
+if %ERRORLEVEL%==4 call SubBatch\ntsd.bat
 goto sysUsefull/menu
