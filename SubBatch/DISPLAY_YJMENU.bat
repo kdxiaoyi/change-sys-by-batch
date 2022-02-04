@@ -63,7 +63,7 @@ set i=1
 set CrashFile=%temp%\CSBB\Crash-s\%random%%RANDOM%%Random%
 md %CrashFile%
 echo Crash Report >>"%CrashFile%\CRASH_REPORT.log"
-echo ================================================= >>"%CrashFile%\CRASH_REPORT.log"
+echo ================================================================================ >>"%CrashFile%\CRASH_REPORT.log"
 set i=20
 echo  ^> Oh,no,this is the 115414th crash report! >>"%CrashFile%\CRASH_REPORT.log"
 echo. >>"%CrashFile%\CRASH_REPORT.log"

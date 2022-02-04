@@ -13,7 +13,7 @@ if NOT EXIST api\ntsd.exe (
     set errorcode=CSBB/ntsd:no.ntsd.file
     goto error
 )
-if "%RunByNoAdmin%"=="1" (
+if NOT "%isgotuac%"=="1" (
     cls
     echo.
     echo    错误：权限不足。
@@ -26,7 +26,7 @@ if "%RunByNoAdmin%"=="1" (
 :menu
 cls
 echo ^> NTSD menu
-echo ===================================================================
+echo ================================================================================
 echo         Welcome to [Changing SYS by Bat]
 echo.
 echo.    [1] NTSD 强杀进程 (镜像名模式)
@@ -41,7 +41,7 @@ echo  WARING:NTSD现在基本废掉。服务进程无法调试，杀软等特殊进程拒绝访问
 echo.
 echo     [0] 返回
 echo  Made by kdXiaoyi. %y%版权所有
-echo ===================================================================
+echo ================================================================================
 api\choice.exe /c 01234567 /N /M 从中选择一项^>
 if %ERRORLEVEL%==1 call main.bat
 if %ERRORLEVEL%==2 goto imagename.kill
@@ -55,7 +55,7 @@ goto menu
 
 :tasklist.all
 cls
-tasklist
+tasklist | more /e /c /p /s
 echo.
 echo Finish Work.
 pause>nul

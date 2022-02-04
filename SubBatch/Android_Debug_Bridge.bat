@@ -22,7 +22,7 @@ goto menu
 :menu
 cls
 echo ^> Android Debug Bridge / Choice Mode
-echo ===================================================================
+echo ================================================================================
 echo         Welcome to [Changing SYS by Bat]
 echo.
 echo.    [1] Run Adb.exe
@@ -32,7 +32,7 @@ echo.    [4] 终止ADB Daemon Service
 echo.
 echo     [0] EXIT
 echo  Made by kdXiaoyi. %y%版权所有
-echo ===================================================================
+echo ================================================================================
 echo SysBit=x%sysbit%
 api\choice.exe /c 12304 /N /M 从中选择一项^>
 cls

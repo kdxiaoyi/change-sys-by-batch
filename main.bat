@@ -6,6 +6,8 @@ goto HEAD
 :head
 @echo off
 cls
+rem 修改屏幕大小
+mode CON: COLS=80 LINES=30
 title CSBB
 goto getUACAdmin
 
@@ -43,6 +45,8 @@ exit 0
 cd /d "%~dp0"
 echo 当前运行路径是：%CD%
 echo 已获取管理员权限
+set IsGotUAC=1
+set IsGetUAC=1
 goto CSBB/api.load
 
 :Error
@@ -100,9 +104,9 @@ exit
 :CSBB/about
 cls
 echo ^> About us
-echo ===================================================================
+echo ================================================================================
 more /e /p +4 < texts\about_us.helptext
-echo ===================================================================
+echo ================================================================================
 echo 任意键返回……
 pause>nul
 goto CSBB/menu
@@ -110,14 +114,14 @@ goto CSBB/menu
 :CSBB/exit.sure
 cls
 echo ^> EXIT Screen
-echo ===================================================================
+echo ================================================================================
 echo.
 echo         您确定要退出？
 echo.
 echo  键入[Y]并回车以完成操作。
 echo.
 echo Made by kdXiaoyi. %y%版权所有
-echo ===================================================================
+echo ================================================================================
 echo SysBit=x%sysbit%
 set /p input=^> 
 if "%input%"=="Y" exit
@@ -127,18 +131,19 @@ goto CSBB/menu
 :CSBB/menu
 cls
 echo ^> 主菜单
-echo ===================================================================
+echo ================================================================================
 echo         Welcome to [Changing SYS by Bat]
 echo.
 echo.    [1] 系统外观
 echo.    [2] 系统实用
+echo     [3] 部分木马病毒专杀/预防工具
 echo.
 echo.    [A] About us
 echo     [Q/E] EXIT
 echo  Made by kdXiaoyi. %y%版权所有
-echo ===================================================================
+echo ================================================================================
 echo SysBit=x%SysBit%
-api\choice.exe /c P12AQE /N /M 从中选择一项^>
+api\choice.exe /c P12AQE3 /N /M 从中选择一项^>
 if %ERRORLEVEL%==0 (
     rem 用户中断操作。
     echo NO TRUE CHOICE INTUT
@@ -158,12 +163,13 @@ if %ERRORLEVEL%==3 goto sysUsefull/menu
 if %ERRORLEVEL%==4 goto CSBB/about
 if %ERRORLEVEL%==5 goto CSBB/exit.sure
 if %ERRORLEVEL%==6 goto CSBB/exit.sure
+if %ERRORLEVEL%==7 call SubBatch\Virus_Defender.bat
 goto CSBB/menu
 
 :sys_show/menu
 cls
 echo ^> 系统外观菜单
-echo ===================================================================
+echo ================================================================================
 echo         Welcome to [Changing SYS by Bat]
 echo.
 echo.    [A] 禁用快捷方式小箭头
@@ -172,7 +178,7 @@ echo     [1] 右键菜单中的显卡设置菜单管理
 echo.
 echo.    [0] 返回
 echo  Made by kdXiaoyi. %y%版权所有
-echo ===================================================================
+echo ================================================================================
 echo SysBit=x%SysBit%
 api\choice.exe /c 0AB1 /N /M 从中选择一项^>
 echo.
@@ -217,7 +223,7 @@ goto sys_show_menu
 :sysUsefull/menu
 cls
 echo ^> 系统实用
-echo ===================================================================
+echo ================================================================================
 echo         Welcome to [Changing SYS by Bat]
 echo.
 echo.    [A] Android Debug Bridge
@@ -226,7 +232,7 @@ echo     [N] Ntsd - Microsoft Windows Debugger
 echo.
 echo.    [0] 返回
 echo  Made by kdXiaoyi. %y%版权所有
-echo ===================================================================
+echo ================================================================================
 echo SysBit=x%SysBit%
 api\choice.exe /c 0CAN /N /M 从中选择一项^>
 if %ERRORLEVEL%==1 goto CSBB/menu
