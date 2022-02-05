@@ -118,6 +118,48 @@ api\OpenURL.exe -u https://game.bilibili.com/linkfilter/?url=%CrashFile%
 exit 65535
 
 :vd/kill.WORM.Microsoft_Word,WsF
-echo 原作者：[@福厦高速]   原作者的版权声明见About菜单。
+echo 原作者：[@福厦高速]，有删改   原作者的版权声明见About菜单。
 echo.
-echo 
+echo 本组件适用于查杀特征码为"MICROSOFT_WORD.WSF"的U盘蠕虫病毒
+echo 即将清除磁盘中的所有快捷方式及病毒脚本
+echo 并恢复被恶意隐藏的文件显示
+set input=00000
+set password=%random%%random%
+echo.
+echo  键入验证码完成请求
+echo     ^> %password% ^<
+echo.
+set /p input=Captcha Code Here ^> 
+echo.
+if "%password%"=="%input%" (
+    cls
+    echo.
+    echo 进行中，请稍候...
+    echo.
+    echo 正在查找病毒脚本...
+    if not exist "C:\Users\Administrator\AppData\Roaming\Microsoft Office\Microsoft Word.WsF" (
+        echo     您的计算机尚未感染此病毒。
+    ) else (
+        echo     检测到病毒！
+        echo 正在清除病毒...
+        taskkill /f /t /im wscript.exe >nul 2>nul
+        del /f /s /q "C:\Users\Administrator\AppData\Roaming\Microsoft Office\" >nul 2>nul
+        echo     已清除病毒！
+    )
+    echo 正在恢复U盘文件系统...
+    echo     此过程可能耗时较长，请耐心等待...
+    del /f /s /q "Microsoft Word.WsF" >nul 2>nul
+    attrib -r -a -s -h *.* /s /d >nul 2>nul
+    echo     已恢复文件显示！
+    del *.lnk /f /s /q >nul 2>nul
+    echo     已清除所有无效快捷方式！
+    echo.
+    echo 查杀完成！按任意键退出...
+    pause>nul
+) ELSE (
+    rem 验证码错误
+    echo Bad Captcha Code
+    pause>nul
+)
+rem 这后面接验证码完成后的通用操作
+goto vd/menu

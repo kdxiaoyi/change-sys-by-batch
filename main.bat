@@ -177,12 +177,13 @@ echo.
 echo.    [A] 禁用快捷方式小箭头
 echo.    [B] 启用↑
 echo     [1] 右键菜单中的显卡设置菜单管理
+echo     [U] 弹出[成功升级Windows]窗口
 echo.
 echo.    [0] 返回
 echo  Made by kdXiaoyi. %y%版权所有
 echo ================================================================================
 echo SysBit=x%SysBit%
-api\choice.exe /c 0AB1 /N /M 从中选择一项^>
+api\choice.exe /c 0AB1U /N /M 从中选择一项^>
 echo.
 if %ERRORLEVEL%==2 (
     rem 杀桌面管理器进程
@@ -220,6 +221,7 @@ if %ERRORLEVEL%==3 (
 )
 if %ERRORLEVEL%==4 call SubBatch\display_yjmenu.bat
 if %ERRORLEVEL%==1 goto CSBB/menu
+if %ERRORLEVEL%==5 start /d %windir%\system32 WindowsAnytimeUpgradeResults.exe
 goto sys_show_menu
 
 :sysUsefull/menu
