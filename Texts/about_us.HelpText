@@ -3,9 +3,17 @@
 本工具通过特定Batch命令来帮助用户快速修改系统以达到预期或提供相关工具的简单化菜单。
 
 [ 鸣 谢 ]
-***如果原作者没有说明开源许可证，则默认遵循[GNU Affero General Public License v3.0]许可证。
-*** 侵 删 
-conducer - UAC管理员提取的模块支持 - https://www.cnblogs.com/conducer/p/10591614.html
+***如果原作者没有说明开源许可证，则默认遵循下方注明的许可证。
+*** 侵 删 懂 ?
+
+@conducer - UAC管理员提取的模块支持
+https://www.cnblogs.com/conducer/p/10591614.html
+
+@福厦高速 - Microsoft Word.WsF 类病毒清除源码(有更改)
+https://maorx.cn/u-disk-virus-killer/
+->原作者版权声明如下
+| 福厦高速 保留部分权利。
+| 以转载、二次编译等形式进行传播时请注明原作者。
 
 [版权相关]
 本工具由kdXiaoyi开发。B站主页：https://space.bilibili.com/1987247870

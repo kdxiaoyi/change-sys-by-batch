@@ -1,12 +1,12 @@
 rem 设置版本号
-set Appver=Dev.2022.4b
+set ver=Dev.2022.21a
 set y=2022
 goto HEAD
 
 :head
 @echo off
 cls
-title CSBB
+title Change System By Batch - [%ver%]
 goto getUACAdmin
 
 :CSBB/api.load
@@ -30,7 +30,6 @@ goto CSBB/menu
 @REM if exist "%SystemRoot%\SysWOW64" path %path%;%windir%\SysNative;%SystemRoot%\SysWOW64;%~dp0
 rem 通过访问bcd的方法判断是否有UAC管理员权限
 bcdedit >>nul
-echo %RunByNoAdmin%
 if "%RunByNoAdmin%"=="1" goto CSBB/api.load
 set RunByNoAdmin=0
 if '%errorlevel%' NEQ '0' (goto UACPrompt) else (goto UACAdmin)
@@ -39,7 +38,8 @@ if '%errorlevel%' NEQ '0' (goto UACPrompt) else (goto UACAdmin)
 rem 通过VBS方法得到UAC管理员权限
 rem mshta是一个快速执行JS/VBS脚本的命令行工具
 %1 start "CSBB/GetUACAdmin:getting" mshta vbscript:createobject("shell.application").shellexecute("""%~0""","::",,"runas",1)(window.close)&exit
-exit 0
+exit 0 /b
+exit 0 /b
 
 :UACAdmin
 cd /d "%~dp0"

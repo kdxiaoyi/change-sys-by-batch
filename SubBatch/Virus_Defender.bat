@@ -1,3 +1,22 @@
+rem ################################################################################
+rem 标识节点组成：
+rem [(子)命名空间]/[节1].[节2].….[节n]
+rem                                                  [CSBB]作为父命名空间时优先用子命名空间
+rem Virus_Defender.bat中，命名空间为[vd]
+rem ################################################################################
+rem 节的组成：
+rem /menu.
+rem  菜单
+rem     .x
+rem      意味这是首字母为[x]的检索页
+rem /kill.         ([病毒类型].[病毒名])
+rem  杀病毒工具
+rem     .worm.
+rem      蠕虫类
+rem     .blackmail.
+rem      勒索类
+rem ################################################################################
+
 if not "%isgotuac%"=="1" (
     echo off
     cls
@@ -12,7 +31,7 @@ goto vd/menu
 
 :vd/menu
 cls
-echo ^> Virus Defender - 病毒名检索菜单                                            1/1
+echo ^> Virus Defender - 病毒名检索菜单
 echo ================================================================================
 echo         Welcome to [Changing SYS by Bat]
 echo  按首字母来查找对应病毒。支持查找的有：
@@ -23,13 +42,28 @@ echo     [0] 返回
 echo  Made by kdXiaoyi. %y%版权所有
 echo ================================================================================
 echo SysBit=x%SysBit%
-api\choice.exe /c 0 /N /M 从中选择一项^>
+api\choice.exe /c 0m /N /M 从中选择一项^>
 if %ERRORLEVEL%==1 call main.bat
 if %ERRORLEVEL%==2 goto vd/menu.M
 goto vd/menu
 
 :vd/menu.M
-
+cls
+echo ^> Virus Defender - 病毒名检索菜单 -^> 首字母[M]
+echo ================================================================================
+echo         Welcome to [Changing SYS by Bat]
+echo.
+echo.    [1] (特征杀^|蠕虫) Microsoft Word.WsF
+echo.
+echo     [0] 返回
+echo  Made by kdXiaoyi. %y%版权所有
+echo ================================================================================
+echo SysBit=x%SysBit%
+api\choice.exe /c 01 /N /M 从中选择一项^>
+cls
+if %ERRORLEVEL%==1 goto vd/menu
+if %ERRORLEVEL%==2 goto vd/kill.WORM.Microsoft_Word,WsF
+goto vd/menu
 
 :Error
 rem 显示崩溃信息
@@ -82,3 +116,8 @@ echo   ERROR_INFO_FILE=%CrashFile%
 pause>nul
 api\OpenURL.exe -u https://game.bilibili.com/linkfilter/?url=%CrashFile%
 exit 65535
+
+:vd/kill.WORM.Microsoft_Word,WsF
+echo 原作者：[@福厦高速]   原作者的版权声明见About菜单。
+echo.
+echo 
