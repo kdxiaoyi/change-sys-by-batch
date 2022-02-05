@@ -6,12 +6,12 @@ goto HEAD
 :head
 @echo off
 cls
-rem 修改屏幕大小
-mode CON: COLS=80 LINES=30
 title CSBB
 goto getUACAdmin
 
 :CSBB/api.load
+rem 修改屏幕大小
+mode CON: COLS=80 LINES=30
 rem 检测系统位数
 set SysBit=UNKNOW
 if EXIST %windir%\SysWOW64\ (
@@ -105,7 +105,7 @@ exit
 cls
 echo ^> About us
 echo ================================================================================
-more /e /p +4 < texts\about_us.helptext
+more /E /T4 texts\about_us.helptext
 echo ================================================================================
 echo 任意键返回……
 pause>nul
@@ -137,13 +137,14 @@ echo.
 echo.    [1] 系统外观
 echo.    [2] 系统实用
 echo     [3] 部分木马病毒专杀/预防工具
+echo     [S] 启动 Windows 系统评估
 echo.
 echo.    [A] About us
 echo     [Q/E] EXIT
 echo  Made by kdXiaoyi. %y%版权所有
 echo ================================================================================
 echo SysBit=x%SysBit%
-api\choice.exe /c P12AQE3 /N /M 从中选择一项^>
+api\choice.exe /c P12AQE3S /N /M 从中选择一项^>
 if %ERRORLEVEL%==0 (
     rem 用户中断操作。
     echo NO TRUE CHOICE INTUT
@@ -164,6 +165,7 @@ if %ERRORLEVEL%==4 goto CSBB/about
 if %ERRORLEVEL%==5 goto CSBB/exit.sure
 if %ERRORLEVEL%==6 goto CSBB/exit.sure
 if %ERRORLEVEL%==7 call SubBatch\Virus_Defender.bat
+if %ERRORLEVEL%==8 call SubBatch\winsat.bat
 goto CSBB/menu
 
 :sys_show/menu
