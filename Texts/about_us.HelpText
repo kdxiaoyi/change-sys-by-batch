@@ -1,6 +1,7 @@
 [CSBB] Change System but by Batch
 [功能介绍]
 本工具通过特定Batch命令来帮助用户快速修改系统以达到预期或提供相关工具的简单化菜单。
+兼容性：WinXP未知，报错改改代码应该可以用，Win7+推荐
 
 [ 鸣 谢 ]
 ***如果原作者没有说明开源许可证，则默认遵循下方注明的许可证。
@@ -9,11 +10,17 @@
 @conducer - UAC管理员提取的模块支持
 https://www.cnblogs.com/conducer/p/10591614.html
 
-@福厦高速 - Microsoft Word.WsF 类病毒清除源码(有更改)
+@福厦高速 - Microsoft Word.WsF 类病毒清除源码 (有更改)
 https://maorx.cn/u-disk-virus-killer/
 ->原作者版权声明如下
 | 福厦高速 保留部分权利。
 | 以转载、二次编译等形式进行传播时请注明原作者。
+
+@Batcher - WMIC方法获取可移动磁盘盘符 (有更改)
+http://bbs.bathome.net/thread-3569-1-1.html
+
+@yyx219 与 @smss - 右键菜单中的[复制文件路径]管理 (有更改)
+http://www.bathome.net/thread-59923-1-1.html
 
 [版权相关]
 本工具由kdXiaoyi开发。B站主页：https://space.bilibili.com/1987247870

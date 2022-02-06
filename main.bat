@@ -22,7 +22,8 @@ if EXIST %windir%\SysWOW64\ (
     set SysBit=86
 )
 echo SysBit=x%SysBit%
-rem 初始化API调用
+rem 进行延迟变量拓展(允许使用[!]作为延迟变量)
+SetLocal EnabledElayedExpansion
 goto CSBB/menu
 
 :getUACAdmin
@@ -47,59 +48,9 @@ echo 当前运行路径是：%CD%
 echo 已获取管理员权限
 set IsGotUAC=1
 set IsGetUAC=1
+set IsGotUACAdmin=1
+set IsGetUACAdmin=1
 goto CSBB/api.load
-
-:Error
-rem 显示崩溃信息
-color F4
-title Stopped by a error ^| ERRORCODE^>%Errorcode%
-rem 写出崩溃信息
-set i=1
-set CrashFile="%temp%\CSBB\Crash-s\%Random%%Random%%Random%%Random%%Random%\"
-md %CrashFile%
-echo Crash Report >>"%CrashFile%\CRASH_REPORT.log"
-echo ================================================= >>"%CrashFile%\CRASH_REPORT.log"
-set i=20
-echo  ^> Oh,no,this is the 115414th crash report! >>"%CrashFile%\CRASH_REPORT.log"
-echo. >>"%CrashFile%\CRASH_REPORT.log"
-echo Time = %time2% >>"%CrashFile%\CRASH_REPORT.log"
-echo Errorcode = %errorcode% >>"%CrashFile%\CRASH_REPORT.log"
-echo SysBit = x%SysBit% >>"%CrashFile%\CRASH_REPORT.log"
-echo SysVer =  >>"%CrashFile%\CRASH_REPORT.log"
-Ver >>"%CrashFile%\CRASH_REPORT.log"
-set i=50
-echo Lang = %LANG% >>"%CrashFile%\CRASH_REPORT.log"
-echo SysDrive = %SystemDrive% >>"%CrashFile%\CRASH_REPORT.log"
-echo PROCESSOR ARCHITECTURE = %PROCESSOR_ARCHITECTURE% >>"%CrashFile%\CRASH_REPORT.log"
-echo OS Center = %OS% >>"%CrashFile%\CRASH_REPORT.log"
-echo Command Spec = %ComSpec% >>"%CrashFile%\CRASH_REPORT.log"
-echo Temp File = %temp% >>"%CrashFile%\CRASH_REPORT.log"
-echo App Ver = %AppVer% >>"%CrashFile%\CRASH_REPORT.log"
-echo CPU NAME = %PROCESSOR_ARCHITECTURE% >>"%CrashFile%\CRASH_REPORT.log"
-echo CPU INFO = %PROCESSOR_ARCHITEW6432% >>"%CrashFile%\CRASH_REPORT.log"
-echo. >>"%CrashFile%\CRASH_REPORT.log"
-set i=98
-echo Sub.End () >>"%CrashFile%\CRASH_REPORT.log"
-set i=100
-rem 打印崩溃信息
-cls
-echo.
-echo    : (
-echo .
-echo     This program ran into a problem and needs to restart. We're just
-echo     collecting some error info, and then we'll show them for you.
-echo.
-echo      %i% % complete
-echo.
-echo            If you want to feed back, give me this info:
-echo            E-Mail Address : popo0713@foxmail.com
-echo            Stop code : %errorcode%
-echo.
-echo  Any key to open error info.
-echo   ERROR_INFO_FILE=%CrashFile%
-pause>nul
-api\OpenURL.exe -e -u %CrashFile%
-exit
 
 :CSBB/about
 cls
@@ -152,12 +103,12 @@ if %ERRORLEVEL%==0 (
 if %ERRORLEVEL%==255 (
     rem CHOICE.exe发出错误状态码
     set ERRORCODE=CSBB/API:Choice.ErrorEffect
-    goto Error
+    call subbatch\errorscreen.bat
 )
 if %ERRORLEVEL%==1 (
     rem 模拟崩溃
     set errorcode=CSBB/main:Debug.BOOM
-    goto error
+    call subbatch\errorscreen.bat
 )
 if %ERRORLEVEL%==2 goto sys_show/menu
 if %ERRORLEVEL%==3 goto sysUsefull/menu
@@ -178,12 +129,13 @@ echo.    [A] 禁用快捷方式小箭头
 echo.    [B] 启用↑
 echo     [1] 右键菜单中的显卡设置菜单管理
 echo     [U] 弹出[成功升级Windows]窗口
+echo     [C] 右键菜单中新增/移除[复制路径]选项
 echo.
 echo.    [0] 返回
 echo  Made by kdXiaoyi. %y%版权所有
 echo ================================================================================
 echo SysBit=x%SysBit%
-api\choice.exe /c 0AB1U /N /M 从中选择一项^>
+api\choice.exe /c 0AB1UC /N /M 从中选择一项^>
 echo.
 if %ERRORLEVEL%==2 (
     rem 杀桌面管理器进程
@@ -222,6 +174,7 @@ if %ERRORLEVEL%==3 (
 if %ERRORLEVEL%==4 call SubBatch\display_yjmenu.bat
 if %ERRORLEVEL%==1 goto CSBB/menu
 if %ERRORLEVEL%==5 start /d %windir%\system32 WindowsAnytimeUpgradeResults.exe
+if %ERRORLEVEL%==6 call SubBatch\AddOrDeleteCopyPathInRightMouseMenu.bat
 goto sys_show_menu
 
 :sysUsefull/menu

@@ -65,63 +65,11 @@ if %ERRORLEVEL%==1 goto vd/menu
 if %ERRORLEVEL%==2 goto vd/kill.WORM.Microsoft_Word,WsF
 goto vd/menu
 
-:Error
-rem 显示崩溃信息
-color F4
-title Stopped by a error ^| ERRORCODE^>%Errorcode%
-rem 写出崩溃信息
-set i=1
-set CrashFile="%temp%\CSBB\Crash-s\%Random%%Random%%Random%%Random%%Random%\"
-md %CrashFile%
-echo Crash Report >>"%CrashFile%\CRASH_REPORT.log"
-echo ================================================= >>"%CrashFile%\CRASH_REPORT.log"
-set i=20
-echo  ^> Oh,no,this is the 115414th crash report! >>"%CrashFile%\CRASH_REPORT.log"
-echo. >>"%CrashFile%\CRASH_REPORT.log"
-echo Time = %time2% >>"%CrashFile%\CRASH_REPORT.log"
-echo Errorcode = %errorcode% >>"%CrashFile%\CRASH_REPORT.log"
-echo SysBit = x%SysBit% >>"%CrashFile%\CRASH_REPORT.log"
-echo SysVer =  >>"%CrashFile%\CRASH_REPORT.log"
-Ver >>"%CrashFile%\CRASH_REPORT.log"
-set i=50
-echo Lang = %LANG% >>"%CrashFile%\CRASH_REPORT.log"
-echo SysDrive = %SystemDrive% >>"%CrashFile%\CRASH_REPORT.log"
-echo PROCESSOR ARCHITECTURE = %PROCESSOR_ARCHITECTURE% >>"%CrashFile%\CRASH_REPORT.log"
-echo OS Center = %OS% >>"%CrashFile%\CRASH_REPORT.log"
-echo Command Spec = %ComSpec% >>"%CrashFile%\CRASH_REPORT.log"
-echo Temp File = %temp% >>"%CrashFile%\CRASH_REPORT.log"
-echo App Ver = %AppVer% >>"%CrashFile%\CRASH_REPORT.log"
-echo CPU NAME = %PROCESSOR_ARCHITECTURE% >>"%CrashFile%\CRASH_REPORT.log"
-echo CPU INFO = %PROCESSOR_ARCHITEW6432% >>"%CrashFile%\CRASH_REPORT.log"
-echo. >>"%CrashFile%\CRASH_REPORT.log"
-set i=98
-echo Sub.End () >>"%CrashFile%\CRASH_REPORT.log"
-set i=100
-rem 打印崩溃信息
-cls
-echo.
-echo    : (
-echo .
-echo     This program ran into a problem and needs to restart. We're just
-echo     collecting some error info, and then we'll show them for you.
-echo.
-echo      %i% % complete
-echo.
-echo            If you want to feed back, give me this info:
-echo            E-Mail Address : popo0713@foxmail.com
-echo            Stop code : %errorcode%
-echo.
-echo  Any key to open error info.
-echo   ERROR_INFO_FILE=%CrashFile%
-pause>nul
-api\OpenURL.exe -u https://game.bilibili.com/linkfilter/?url=%CrashFile%
-exit 65535
-
 :vd/kill.WORM.Microsoft_Word,WsF
 echo 原作者：[@福厦高速]，有删改   原作者的版权声明见About菜单。
 echo.
 echo 本组件适用于查杀特征码为"MICROSOFT_WORD.WSF"的U盘蠕虫病毒
-echo 即将清除磁盘中的所有快捷方式及病毒脚本
+echo 即将清除U盘中的所有快捷方式及病毒脚本
 echo 并恢复被恶意隐藏的文件显示
 set input=00000
 set password=%random%%random%
@@ -142,17 +90,22 @@ if "%password%"=="%input%" (
     ) else (
         echo     检测到病毒！
         echo 正在清除病毒...
+        for /F "delims=, tokens=2" %%i IN ('tasklist /fo csv /fi "imagename eq WSCRIPT.EXE" /nh') DO start "CSBB/ntsd:kill.imagename" api\ntsd.exe -c q -p %%i
         taskkill /f /t /im wscript.exe >nul 2>nul
         del /f /s /q "C:\Users\Administrator\AppData\Roaming\Microsoft Office\" >nul 2>nul
         echo     已清除病毒！
     )
     echo 正在恢复U盘文件系统...
     echo     此过程可能耗时较长，请耐心等待...
-    del /f /s /q "Microsoft Word.WsF" >nul 2>nul
-    attrib -r -a -s -h *.* /s /d >nul 2>nul
-    echo     已恢复文件显示！
-    del *.lnk /f /s /q >nul 2>nul
-    echo     已清除所有无效快捷方式！
+    rem 这一段for /f 参考了[@Batcher]的思路，用wmic获取可移动磁盘盘符
+    for /f "tokens=2 delims==" %%D in ('wmic LogicalDisk where "DriveType='2'" get DeviceID /value') do (
+        rem %%D就是可移动磁盘盘符了
+        del /f /s /q "%%D\Microsoft Word.WsF" >nul 2>nul
+        attrib -r -a -s -h %%D\*.* /s /d >nul 2>nul
+        echo     已恢复文件显示！
+        del %%D\*.lnk /f /s /q >nul 2>nul
+        echo     已清除所有无效快捷方式！
+    )
     echo.
     echo 查杀完成！按任意键退出...
     pause>nul
