@@ -3,7 +3,7 @@ cls
 rem 修改屏幕大小
 mode CON: COLS=80 LINES=30
 title CSBB/GetUACAdmin:noAdmin.run.sure
-echo ^> 确定要在没有UAC提取的情况下运行吗？
+echo ^> 确定要在没有UAC提取的情况下运行吗?
 echo ================================================================================
 echo.
 echo   本程序大部分功能需要UAC提权才可以运行。

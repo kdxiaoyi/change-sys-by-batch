@@ -112,6 +112,7 @@ attrib +r +a +s %windir%\Adb.exe
 attrib +r +a +s %windir%\fastboot.exe
 attrib +r +a +s %windir%\AdbWinUsbApi.dll
 attrib +r +a +s %windir%\AdbWinUsbApi.dll
+ATTRIB -r -a -s %windir%\Adb.setup_log.txt
 echo 3/%i%^> Output log .
 echo Android Debug Bridge >>%windir%\Adb.setup_log.txt
 echo  ^>Setup Time >>%windir%\Adb.setup_log.txt
@@ -135,8 +136,8 @@ ATTRIB +r +a +s %windir%\Adb.setup_log.txt
 echo.
 echo Setup Okay
 echo.
+api\taskbarmsg.exe 600000;;[CSBB：[安装ADB]已完成#@1];;任务[安装ADB]已完成\n \n你可以点击我来打开报告信息。\n位置%windir%\Adb.setup_log.txt:;;notepad.exe %windir%\Adb.setup_log.txt
 ping 127.0.0.1 -n 6 >nul
-start "Adb Setup Log" notepad.exe %windir%\Adb.setup_log.txt
 goto menu
 
 :sure
