@@ -12,3 +12,4 @@ adb - Android Debug Bridge调用模块          *这个的子脚本不带子命�
 error - ERROR SCREEN 调用与管理模块
 ntsd - NTSD调用模块          *这个的子脚本也不带子命名空间……
 winsat - Windows性能评估管理器 调用模块
+IFEO - ImageFileExecutionOptions 镜像劫持管理

@@ -1,0 +1,40 @@
+什么是镜像劫持？
+
+在了解什么是镜像劫持前，先了解一个概念：图像名
+当你双击某个应用(比如 abc.exe )，系统会创建一个进程并给与一个单独的数字作为唯一标识符(PID)
+而每个PID对应且仅对应一个进程。
+而用于标识这个进程的就叫图像名。
+与PID的区别是，图像名可以重复但PID是惟一的
+
+而镜像劫持，通过设置一个图像名(比如设置 abc.exe )劫持到另一个文件路径(比如 x:\123.exe )。
+之后你运行 abc.exe 的时候，系统设置进程图像名的时候，会发现这个劫持项。
+于是系统在打开 abc.exe 的时候，表面上打开了，实际上打开的是 x:\123.exe
+
+先前：
+  设置镜像劫持 abc.exe -> x:\123.exe
+之后：
+  双击 abc.exe -> 系统打开 abc.exe -> 系统发现劫持设置 -> 系统不打开 abc.exe 了 -> 系统打开 x:\123.exe
+
+这可以用于：
+ 1. 保护学习软件不被发现(打开弹记事本那种)
+ 2. 防止亲戚家的孩子打开你的steam(打开弹网课 bushi)
+ 3. 劫持浏览器，把Edge之类的强制改成2345浏览器
+
+所以说，各大杀毒软件都会检查镜像劫持……
+
+高级资料：
+
+Windows自带镜像劫持的注册表位于
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options]
+
+格式是
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\被劫持的.exe
+REG_SZ; debugger=劫持的.exe
+
+于是通过reg.exe改劫持方法如下
+
+添加 abc.exe 的劫持为 123.exe
+reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\abc.exe" /t REG_SZ /v debugger /d 123.exe
+
+删除 abc.exe 的劫持配置
+reg delete "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\abc.exe" /f

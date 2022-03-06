@@ -169,7 +169,7 @@ MODE con: COLS=75 LINES=1
 echo 不要关闭这2个黑窗口……这将花费一些时间……
 if NOT "%winsat/xml.WillSave%"=="1" (
     rem 不保存XML报告
-    start /WAIT /HIGH WINSAT.EXE %winsat/test.mode%
+    start /WAIT /HIGH cmd.exe /c WinSAT %winsat/test.mode%
     title FINISH WORK
     MODE con: COLS=75 LINES=2
     echo 评估完成，任意键返回.
@@ -177,7 +177,7 @@ if NOT "%winsat/xml.WillSave%"=="1" (
 ) ELSE (
     rem 保存XML报告
     md %winsat/xml.saveFile%
-    start /WAIT /HIGH WINSAT.EXE WINSAT %winsat/test.mode% -XML %winsat/xml.saveFile%\REPORT_XML.xml
+    start /WAIT /HIGH cmd.exe /c WINSAT %winsat/test.mode% -XML %winsat/xml.saveFile%\REPORT_XML.xml
     title FINISH WORK
     MODE con: COLS=75 LINES=2
     echo 评估完成，任意键返回.

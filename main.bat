@@ -24,6 +24,11 @@ if EXIST %windir%\SysWOW64\ (
 echo SysBit=x%SysBit%
 rem 进行延迟变量拓展(允许使用[!]作为延迟变量)
 SetLocal EnabledElayedExpansion
+rem 配置临时目录
+set tmp="%temp%\CSBB"
+set tmp\="%temp%\CSBB\"
+set tempFiles="%temp%\CSBB"
+set tempFiles\="%temp%\CSBB\"
 goto CSBB/menu
 
 :getUACAdmin
@@ -95,7 +100,7 @@ echo     [Q/E] EXIT
 echo  Made by kdXiaoyi. %y%版权所有
 echo ================================================================================
 echo SysBit=x%SysBit%
-api\choice.exe /c P12AQE3S /N /M 从中选择一项^>
+api\choice.exe /c P12AQE3SH /N /M 从中选择一项^>
 if %ERRORLEVEL%==0 (
     rem 用户中断操作。
     echo NO TRUE CHOICE INTUT
@@ -117,6 +122,7 @@ if %ERRORLEVEL%==5 goto CSBB/exit.sure
 if %ERRORLEVEL%==6 goto CSBB/exit.sure
 if %ERRORLEVEL%==7 call SubBatch\Virus_Defender.bat
 if %ERRORLEVEL%==8 call SubBatch\winsat.bat
+if %ERRORLEVEL%==9 api\openurl.exe https://gitee.com/kdXiaoyi/changing-sys-by-bat/blob/master/LICENSE/
 goto CSBB/menu
 
 :sys_show/menu
@@ -187,12 +193,13 @@ echo.    [A] Android Debug Bridge
 echo.    [C] 清理垃圾
 echo     [R] #内存清理管理#                                          (BETA VERSION)
 echo     [N] Ntsd - Microsoft Windows Debugger
+echo     [T] 配置镜像劫持
 echo.
 echo.    [0] 返回
 echo  Made by kdXiaoyi. %y%版权所有
 echo ================================================================================
 echo SysBit=x%SysBit%
-api\choice.exe /c 0CANR /N /M 从中选择一项^>
+api\choice.exe /c 0CANRT /N /M 从中选择一项^>
 if %ERRORLEVEL%==1 goto CSBB/menu
 if %ERRORLEVEL%==2 (
     cls
@@ -216,6 +223,7 @@ if %ERRORLEVEL%==2 (
 if %ERRORLEVEL%==3 call SubBatch\Android_Debug_Bridge.bat
 if %ERRORLEVEL%==4 call SubBatch\ntsd.bat
 if %ERRORLEVEL%==5 goto sysUsefull/ramEmpty.menu
+if %ERRORLEVEL%==6 call subbatch\ImageFileExecutionOptions.bat
 goto sysUsefull/menu
 
 :sysUsefull/ramEmpty.menu
