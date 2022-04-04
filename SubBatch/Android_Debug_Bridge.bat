@@ -100,7 +100,7 @@ for /F "delims=, tokens=2" %%i IN ('tasklist /fo csv /fi "imagename eq adb.exe" 
 echo 2/%i%^> Copy Adb files .
 set input=00000
 set password=%random%%random%
-if EXIST %windir%\Adb.exe set sure=f
+if not EXIST %windir%\Adb.exe set sure=f
 if "%sure%"=="t" goto sure
 attrib -r -a -s %windir%\Adb.setup_log.txt
 del %windir%\Adb.setup_log.txt /q /f
@@ -136,7 +136,7 @@ ATTRIB +r +a +s %windir%\Adb.setup_log.txt
 echo.
 echo Setup Okay
 echo.
-api\taskbarmsg.exe 600000;;[CSBB：[安装ADB]已完成#@1];;任务[安装ADB]已完成\n \n你可以点击我来打开报告信息。\n位置%windir%\Adb.setup_log.txt:;;notepad.exe %windir%\Adb.setup_log.txt
+api\taskbarmsg.exe 600000;;CSBB：[安装ADB]已完成#@2;;任务[安装ADB]已完成\n \n你可以点击我来打开报告信息。\n位置%windir%\Adb.setup_log.txt;;notepad.exe %windir%\Adb.setup_log.txt
 ping 127.0.0.1 -n 6 >nul
 goto menu
 

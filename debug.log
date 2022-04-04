@@ -1,0 +1,28 @@
+[7560:7828:0403/192546.813:4734703:VERBOSE1:setup_main.cc(2788)] Command Line: "C:\Program Files (x86)\Microsoft\Edge\Application\100.0.1185.29\Installer\setup.exe" --configure-user-settings --verbose-logging --system-level --msedge --channel=stable
+[7560:7828:0403/192546.813:4734703:VERBOSE1:setup_main.cc(2794)] system install is 1
+[7560:7828:0403/192546.813:4734703:WARNING:app_command.cc(61)] Error reading CommandLine value from registry: 2
+[7560:7828:0403/192546.813:4734703:VERBOSE1:app_commands.cc(51)] Skipping over key "on-logon-autolaunch" as it does not appear to hold a product command.
+[7560:7828:0403/192546.828:4734718:VERBOSE1:installer_state.cc(95)] Install
+[7560:7828:0403/192546.828:4734718:VERBOSE1:install_util.cc(289)] Windows NT 6.3.9600
+[7560:7828:0403/192546.844:4734734:VERBOSE1:install.cc(1192)] Executing HandleActiveSetupForBrowser. Force: 0
+[7560:7828:0403/192546.844:4734734:VERBOSE1:install_worker.cc(1468)] Adding unregistration items for per-user Metro keys.
+[7560:7828:0403/192546.844:4734734:VERBOSE1:work_item_list.cc(33)] Beginning execution of work item list Cleanup deprecated per-user registrations
+[7560:7828:0403/192546.844:4734734:VERBOSE1:install_util.cc(554)] Deleting registry key Software\Microsoft\Edge\Metro
+[7560:7828:0403/192546.844:4734734:VERBOSE1:install_util.cc(554)] Deleting registry key Software\Microsoft\Edge\Metro
+[7560:7828:0403/192546.844:4734734:VERBOSE1:work_item_list.cc(54)] Successful execution of work item list Cleanup deprecated per-user registrations
+[7560:7828:0403/192546.844:4734734:VERBOSE1:shell_util.cc(4384)] IsEnterpriseDevice() returning false
+[7560:7828:0403/192546.844:4734734:VERBOSE1:shell_util.cc(2948)] ShouldCreateDesktopShortcut() returning true
+[7560:7828:0403/192546.844:4734734:VERBOSE1:install.cc(152)] Overwriting per-user Desktop "Microsoft Edge" shortcut to C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe.
+[7560:7828:0403/192546.860:4734750:WARNING:install.cc(150)] Failed: Overwriting (maybe the shortcut doesn't exist?) per-user Desktop "Microsoft Edge" shortcut to C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe.
+[7560:7828:0403/192546.860:4734750:VERBOSE1:install.cc(152)] Overwriting per-user Quick Launch "Microsoft Edge" shortcut to C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe.
+[7560:7828:0403/192546.891:4734781:VERBOSE1:install.cc(152)] Overwriting per-user Start menu "Microsoft Edge" shortcut to C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe.
+[7560:7828:0403/192546.907:4734796:WARNING:install.cc(150)] Failed: Overwriting (maybe the shortcut doesn't exist?) per-user Start menu "Microsoft Edge" shortcut to C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe.
+[7560:7828:0403/192546.907:4734796:VERBOSE1:shell_util.cc(4410)] Cannot take default associations
+[7560:7828:0403/192546.907:4734796:VERBOSE1:shell_util.cc(4612)] Attempting to set Edge as the default MHT handler
+[7560:7828:0403/192546.907:4734796:VERBOSE1:shell_util.cc(4647)] Another app is already the default for .mht
+[7560:7828:0403/192546.907:4734796:VERBOSE1:shell_util.cc(4647)] Another app is already the default for .mhtml
+[7560:7828:0403/192546.907:4734796:VERBOSE1:install.cc(1296)] Launching msedge to finish Active Setup
+[7560:7828:0403/192546.907:4734796:VERBOSE1:install.cc(968)] Launching ""C:\Program Files (x86)\Microsoft\Edge\Application\100.0.1185.29\Installer\setup.exe" --msedge --channel=stable --launch-msedge-after-unlock --verbose-logging --system-level" to wait for unlock.
+[7560:7828:0403/192546.922:4734812:VERBOSE1:install.cc(1324)] Active-Setup phase took 78 msecs.
+[7560:7828:0403/192546.922:4734812:VERBOSE1:install_util.cc(258)] Existing version found: 100.0.1185.29
+[7560:7828:0403/192546.922:4734812:VERBOSE1:setup_main.cc(2979)] NonInstall operation completed. Exit code: 0
