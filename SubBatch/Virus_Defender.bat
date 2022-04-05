@@ -62,10 +62,10 @@ echo SysBit=x%SysBit%
 api\choice.exe /c 01 /N /M 从中选择一项^>
 cls
 if %ERRORLEVEL%==1 goto vd/menu
-if %ERRORLEVEL%==2 goto vd/kill.WORM.Microsoft_Word,WsF
+if %ERRORLEVEL%==2 goto vd/kill.WORM.Microsoft_Word
 goto vd/menu
 
-:vd/kill.WORM.Microsoft_Word,WsF
+:vd/kill.WORM.Microsoft_Word
 echo 原作者：[@福厦高速]，有删改   原作者的版权声明见About菜单。
 echo.
 echo 本组件适用于查杀特征码为"MICROSOFT_WORD.WSF"的U盘蠕虫病毒
