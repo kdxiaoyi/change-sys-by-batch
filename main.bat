@@ -1,5 +1,6 @@
 rem 设置版本号
-set ver=Dev.2022.2.2b
+rem 20xx.xx指20xx年的x月第x个更新
+set ver=Dev.2022.4a
 set y=2022
 goto HEAD
 
