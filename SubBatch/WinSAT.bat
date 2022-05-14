@@ -127,6 +127,8 @@ echo ^> Windows System Assessment Tool
 echo ================================================================================
 echo         Welcome to [Changing SYS by Bat]
 echo.
+echo     [1] 修复WinSAT功能(会在控制面板显示)
+echo.
 echo.    [F] 运行 全部 评估
 echo.    [D] 运行 DWM性能 评估
 echo.    [C] 运行 CPU性能 评估
@@ -149,7 +151,7 @@ echo.    [0] 返回
 echo  Made by kdXiaoyi. %y%版权所有
 echo ================================================================================
 echo SysBit=x%SysBit%
-api\choice.exe /c 0XFDCM3KEA /N /M 从中选择一项^>
+api\choice.exe /c 0XFDCM3KEA1 /N /M 从中选择一项^>
 cls
 if %ERRORLEVEL%==1 call main.bat
 if %ERRORLEVEL%==2 goto winsat/xml.settings
@@ -161,6 +163,46 @@ if %ERRORLEVEL%==7 set winsat/test.mode=d3d&goto winsat/test.cmdline
 if %ERRORLEVEL%==8 set winsat/test.mode=disk&goto winsat/test.cmdline
 if %ERRORLEVEL%==9 set winsat/test.mode=media&goto winsat/test.cmdline
 if %ERRORLEVEL%==10 set winsat/test.mode=mfmedia&goto winsat/test.cmdline
+if %ERRORLEVEL%==11 goto winsat/fixup
+goto winsat/menu
+
+:winsat/fixup
+cls
+if %sysbit%_==86_ goto winsat/fixup.86
+if %sysbit%_==64_ goto winsat/fixup.64
+echo {UNDERFIND} 未知的系统位数。
+ping 127.0.0.1 -n 5 >nul
+goto winsat/menu
+
+:winsat/fixup.86
+xcopy Data\WinSAT_Fixup\windows\SysWOW64\*.* %SystemRoot%\System32\
+xcopy Data\WinSAT_Fixup\windows\SysWOW64\zh-cn\*.* %SystemRoot%\System32\zh-cn\
+regedit /s Data\WinSAT_Fixup\PerfCenter.reg
+regsvr32 /s "%SystemRoot%\System32\PerfCenterCPL.dll"
+regsvr32 /s "%SystemRoot%\System32\WinSATAPI.dll"
+regsvr32 /s "%SystemRoot%\System32\diagperf.dll"
+regsvr32 /s "%SystemRoot%\System32\perftrack.dll"
+goto winsat/fixup.finish
+
+:winsat/fixup.64
+xcopy Data\WinSAT_Fixup\windows\system32\*.* %SystemRoot%\System32\
+xcopy Data\WinSAT_Fixup\windows\SysWow64\*.* %SystemRoot%\SysWow64\
+xcopy Data\WinSAT_Fixup\windows\system32\zh-cn\*.* %SystemRoot%\System32\zh-cn\
+xcopy Data\WinSAT_Fixup\windows\SysWow64\zh-cn\*.* %SystemRoot%\SysWow64\zh-cn\
+regedit /s Data\WinSAT_Fixup\PerfCenter.reg
+regsvr32 /s "%SystemRoot%\System32\PerfCenterCPL.dll"
+regsvr32 /s "%SystemRoot%\System32\WinSATAPI.dll"
+regsvr32 /s "%SystemRoot%\System32\diagperf.dll"
+regsvr32 /s "%SystemRoot%\System32\perftrack.dll"
+regsvr32 /s "%SystemRoot%\SysWow64\PerfCenterCPL.dll"
+regsvr32 /s "%SystemRoot%\SysWow64\WinSATAPI.dll"
+goto winsat/fixup.finish
+
+:winsat/fixup.finish
+echo 修复完成。
+echo.
+echo 任意键返回……
+pause>nul
 goto winsat/menu
 
 :winsat/test.cmdline
