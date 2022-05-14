@@ -62,7 +62,7 @@ goto CSBB/api.load
 cls
 echo ^> About us
 echo ================================================================================
-more /E /T4 texts\about_us.helptext
+more /E /T4 Data\Texts\about_us.helptext
 echo ================================================================================
 echo 任意键返回……
 pause>nul
@@ -192,6 +192,8 @@ echo         Welcome to [Changing SYS by Bat]
 echo.
 echo.    [A] Android Debug Bridge
 echo.    [C] 清理垃圾
+echo.    [D] 删除系统缓存
+echo.    [E] 删除系统缓存(精简版)
 echo     [R] #内存清理管理#                                          (BETA VERSION)
 echo     [N] Ntsd - Microsoft Windows Debugger
 echo     [T] 配置镜像劫持
@@ -234,7 +236,7 @@ echo ===========================================================================
 echo         Welcome to [Changing SYS by Bat]
 echo.
 echo.    [1] 立即释放内存
-echo.    [2] 注册释放内存为服务(这样就可以定时释放了)
+@REM echo.    [2] 注册释放内存为服务(这样就可以定时释放了)
 echo     [3] 反注册↑
 echo.
 echo.    [0] 返回

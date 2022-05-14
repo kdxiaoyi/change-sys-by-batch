@@ -40,7 +40,7 @@ if %ERRORLEVEL%==2 (
     cls
     echo ^> Ê²Ã´ÊÇ¾µÏñ½Ù³Ö?
     echo ================================================================================
-    more /E /T4 texts\HelpForIFEO.helptext
+    more /E /T4 Data\Texts\HelpForIFEO.helptext
     echo.
     pause >nul
 )

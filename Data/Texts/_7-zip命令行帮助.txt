@@ -1,0 +1,66 @@
+7-Zip 21.02 alpha (x64)：版权所有 (c) 1999-2021 Igor Pavlov：2021-05-06
+
+用法：7z <command> [<switches>...] <archive_name> [<file_names>...] [@listfile]
+
+
+<命令>
+  a : 将文件添加到存档
+  b : 基准
+  d ：从存档中删除文件
+  e ：从存档中提取文件（不使用目录名）
+  h : 计算文件的哈希值
+  i ：显示有关支持格式的信息
+  l : 列出存档的内容
+  rn : 重命名存档中的文件
+  t ：测试存档的完整性
+  u : 更新文件到存档
+  x ：具有完整路径的提取文件
+
+<开关>
+  -- : 停止开关和@listfile 解析
+  -ai[r[-|0]]{@listfile|!wildcard} ：包含档案
+  -ax[r[-|0]]{@listfile|!wildcard} ：排除档案
+  -ao{a|s|t|u} ：设置覆盖模式
+  -an : 禁用存档名称字段
+  -bb[0-3] : 设置输出日志级别
+  -bd ：禁用进度指示器
+  -bs{o|e|p}{0|1|2} ：为输出/错误/进度行设置输出流
+  -bt : 显示执行时间统计
+  -i[r[-|0]]{@listfile|!wildcard} ：包含文件名
+  -m{Parameters} : 设置压缩方法
+    -mmt[N] : 设置 CPU 线程数
+    -mx[N] ：设置压缩级别：-mx1（最快）... -mx9（超）
+  -o{Directory} : 设置输出目录
+  -p{密码}：设置密码
+  -r[-|0] ：递归子目录
+  -sa{a|e|s} ：设置存档名称模式
+  -scc{UTF-8|WIN|DOS} ：为控制台输入/输出设置字符集
+  -scs{UTF-8|UTF-16LE|UTF-16BE|WIN|DOS|{id}} ：设置列表文件的字符集
+  -scrc[CRC32|CRC64|SHA1|SHA256|*] : 为 x, e, h 命令设置哈希函数
+  -sdel : 压缩后删除文件
+  -seml[.] : 通过电子邮件发送存档
+  -sfx[{name}] : 创建 SFX 存档
+  -si[{name}] : 从标准输入读取数据
+  -slp：设置大页面模式
+  -slt : 显示 l (List) 命令的技术信息
+  -snh ：将硬链接存储为链接
+  -snl ：将符号链接存储为链接
+  -sni : 存储 NT 安全信息
+  -sns[-] : 存储 NTFS 备用流
+  -so : 将数据写入标准输出
+  -spd ：禁用文件名的通配符匹配
+  -spe ：消除提取命令的根文件夹的重复
+  -spf ：使用完全限定的文件路径
+  -ssc[-] : 设置敏感大小写模式
+  -sse ：如果无法打开某些输入文件，则停止存档创建
+  -ssp : 归档时不要更改源文件的上次访问时间
+  -ssw : 压缩共享文件
+  -stl ：从最近修改的文件中设置存档时间戳
+  -stm{HexMask} ：设置 CPU 线程关联掩码（十六进制数）
+  -stx{Type} ：排除存档类型
+  -t{Type} : 设置存档类型
+  -u[-][p#][q#][r#][x#][y#][z#][!newArchiveName]：更新选项
+  -v{Size}[b|k|m|g] ：创建卷
+  -w[{path}] ：分配工作目录。空路径表示临时目录
+  -x[r[-|0]]{@listfile|!wildcard} ：排除文件名
+  -y ：在所有查询中假设是
