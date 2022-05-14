@@ -1,6 +1,6 @@
 rem 设置版本号
 rem 20xx.xx指20xx年的x月第x个更新
-set ver=Dev.2022.5a
+set ver=Dev.2022.5b
 set y=2022
 goto HEAD
 
@@ -137,12 +137,13 @@ echo.    [B] 启用↑
 echo     [1] 右键菜单中的显卡设置菜单管理
 echo     [U] 弹出[成功升级Windows]窗口
 echo     [C] 右键菜单中新增/移除[复制路径]选项
+echo     [E] 为Windows 8+启用Aero效果
 echo.
 echo.    [0] 返回
 echo  Made by kdXiaoyi. %y%版权所有
 echo ================================================================================
 echo SysBit=x%SysBit%
-api\choice.exe /c 0AB1UC /N /M 从中选择一项^>
+api\choice.exe /c 0AB1UCE /N /M 从中选择一项^>
 echo.
 if %ERRORLEVEL%==2 (
     rem 杀桌面管理器进程
@@ -182,6 +183,7 @@ if %ERRORLEVEL%==4 call SubBatch\display_yjmenu.bat
 if %ERRORLEVEL%==1 goto CSBB/menu
 if %ERRORLEVEL%==5 start /d %windir%\system32 WindowsAnytimeUpgradeResults.exe
 if %ERRORLEVEL%==6 call SubBatch\AddOrDeleteCopyPathInRightMouseMenu.bat
+if %ERRORLEVEL%==7 call SubBatch\Aero.bat
 goto sys_show_menu
 
 :sysUsefull/menu
