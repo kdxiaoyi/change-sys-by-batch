@@ -1,6 +1,6 @@
 rem 设置版本号
 rem 20xx.xx指20xx年的x月第x个更新
-set ver=Dev.2022.5c
+set ver=Dev.2022.5d
 set y=2022
 goto HEAD
 
@@ -97,14 +97,15 @@ echo     [3] #部分木马病毒专杀/预防工具#                              (Test Vers
 echo     [S] 启动 Windows 系统评估
 echo.
 echo.    [A] About us
+echo     [I] Issues us
 echo     [Q/E] EXIT
 echo  Made by kdXiaoyi. %y%版权所有
 echo ================================================================================
 echo SysBit=x%SysBit%
-api\choice.exe /c P12AQE3SH /N /M 从中选择一项^>
+api\choice.exe /c P12AQE3SHI /N /M 从中选择一项^>
 if %ERRORLEVEL%==0 (
     rem 用户中断操作。
-    echo NO TRUE CHOICE INTUT
+    echo NO TRUE CHOICE INPUT
 )
 if %ERRORLEVEL%==255 (
     rem CHOICE.exe发出错误状态码
@@ -124,6 +125,7 @@ if %ERRORLEVEL%==6 goto CSBB/exit.sure
 if %ERRORLEVEL%==7 call SubBatch\Virus_Defender.bat
 if %ERRORLEVEL%==8 call SubBatch\winsat.bat
 if %ERRORLEVEL%==9 api\openurl.exe https://gitee.com/kdXiaoyi/changing-sys-by-bat/blob/master/LICENSE/
+if %ERRORLEVEL%==10 goto CSBB/Issues
 goto CSBB/menu
 
 :sys_show/menu
@@ -194,8 +196,6 @@ echo         Welcome to [Changing SYS by Bat]
 echo.
 echo.    [A] Android Debug Bridge
 echo.    [C] 清理垃圾
-echo.    [D] 删除系统缓存
-echo.    [E] 删除系统缓存(精简版)
 echo     [R] #内存清理管理#                                          (BETA VERSION)
 echo     [N] Ntsd - Microsoft Windows Debugger
 echo     [T] 配置镜像劫持
@@ -211,19 +211,19 @@ if %ERRORLEVEL%==2 (
     echo.
     echo  清理垃圾中...
     echo.
-    rem temp目录
+    echo temp目录/文件
     del %temp%\*.* /q
     del %tmp%\*.* /q
-    rem .TMP/log 文件
     del C:\*.tmp /q
     del D:\*.log /q
     del C:\*.tmp /q
     del D:\*.log /q
-    rem 常见缓存目录
+    del %windir%\temp\*.* /q
+    echo 应用崩溃后报告文件
 	del /q /f /s "%LOCALAPPDATA%\microsoft\windows\wer\reportArchive\*.*"
 	del /q /f /s "%LOCALAPPDATA%\microsoft\windows\wer\reportQueue\*.*"
-	rem 应用崩溃后报告文件
-    del %windir%\temp\*.* /q
+    echo ramEmpty
+    api\ramEmpty.exe *
 )
 if %ERRORLEVEL%==3 call SubBatch\Android_Debug_Bridge.bat
 if %ERRORLEVEL%==4 call SubBatch\ntsd.bat
@@ -239,7 +239,7 @@ echo         Welcome to [Changing SYS by Bat]
 echo.
 echo.    [1] 立即释放内存
 @REM echo.    [2] 注册释放内存为服务(这样就可以定时释放了)
-echo     [3] 反注册↑
+@REM echo     [3] 反注册↑
 echo.
 echo.    [0] 返回
 echo  Made by kdXiaoyi. %y%版权所有
@@ -323,3 +323,26 @@ if "%ERRORLEVEL%"=="4" (
 )
 ping 127.0.0.1 -n 3 >nul
 goto sysUsefull/ramEmpty.menu
+
+:CSBB/Issues
+cls
+echo ^> CSBB问题反馈
+echo ================================================================================
+echo         Welcome to [Changing SYS by Bat]
+echo.
+echo.    [1] 提交Issues (需要登录到Gitee)
+echo     [2] 提交电子邮件 (需要登录到QQ)
+echo     [3] 查看全部的Issues (需要登录到Gitee)
+echo.
+echo.    [0] 返回
+echo  Made by kdXiaoyi. %y%版权所有
+echo ================================================================================
+echo SysBit=x%SysBit%
+api\choice.exe /c 012 /N /M 从中选择一项^>
+@REM cls
+if "%ERRORLEVEL%"=="1" goto csbb/menu
+if "%ERRORLEVEL%"=="2" api\openurl.exe -u gitee.com/kdXiaoyi/changing-sys-by-bat/issues/new
+if "%ERRORLEVEL%"=="3" api\openurl.exe -u mail.qq.com/cgi-bin/qm_share?t=qm_mailme^&email=9cTHzMTDwcPBxcS1hITblpqY
+if "%ERRORLEVEL%"=="4" api\openurl.exe -u gitee.com/kdXiaoyi/changing-sys-by-bat/issues/
+cls
+goto csbb/menu
