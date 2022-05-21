@@ -1,7 +1,4 @@
-7-Zip 21.02 alpha (x64)：版权所有 (c) 1999-2021 Igor Pavlov：2021-05-06
-
 用法：7z <command> [<switches>...] <archive_name> [<file_names>...] [@listfile]
-
 
 <命令>
   a : 将文件添加到存档
