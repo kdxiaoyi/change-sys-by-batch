@@ -61,3 +61,9 @@
   -w[{path}] ：分配工作目录。空路径表示临时目录
   -x[r[-|0]]{@listfile|!wildcard} ：排除文件名
   -y ：在所有查询中假设是
+
+e.g.将[file]解压到[to]
+for /f %%i in ('api\getGuid.exe') do set GUID=%%i
+md "%tmp%\7zip\%GUID%\"
+md "%tmp%\[TO]\"
+start "7-zip ^| Unzipped files" /wait /D %tmp%\[TO]\ api\7zip\7z.exe x -y -w{"%tmp%\7zip\%GUID%\"} "[FILE]"

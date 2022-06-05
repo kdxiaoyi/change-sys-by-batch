@@ -5,7 +5,7 @@ if "%IsGotUAC%" NEQ "1" (
     echo  [User] ^< Need:[UAC-Admin]
     echo.
     ping 127.0.0.1 -n 5 >nul
-    call main.bat
+    call main.bat || exit /b -2
 )
 set input=00000
 set password=%random%%random%
