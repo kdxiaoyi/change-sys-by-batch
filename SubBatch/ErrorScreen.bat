@@ -14,8 +14,18 @@ echo.
 echo      %i% %% complete
 echo.
 for /f %%o in ('api\GetGUID.exe') do set guid=%%o
-set CrashFile="%temp%\CSBB\Crash-s\%guid%\"
+set CrashFile="%temp%CSBB\Crash-s\%guid%\"
 md %CrashFile%
+if not exist "%crashfile%" (
+    rem Crash File 不正确
+    set CrashFile="%temp%\CSBB\Crash-s\%guid%\"
+    md "%temp%\CSBB\Crash-s\%guid%\"
+    if not exist "%temp%\CSBB\Crash-s\%guid%\" (
+        rem 还是不正确时不用临时目录
+        set CrashFile="%cd%\Crash-s\%guid%\"
+        md "%cd%\Crash-s\%guid%\"
+    )
+)
 echo Crash Report >>"%CrashFile%\CRASH_REPORT.log"
 echo ================================================= >>"%CrashFile%\CRASH_REPORT.log"
 set i=20
@@ -30,7 +40,7 @@ echo      %i% %% complete
 echo.
 echo  ^> Oh,no,this is the 115414th crash report! >>"%CrashFile%\CRASH_REPORT.log"
 echo. >>"%CrashFile%\CRASH_REPORT.log"
-echo Time                   = %time2% >>"%CrashFile%\CRASH_REPORT.log"
+echo Time                   = %time% >>"%CrashFile%\CRASH_REPORT.log"
 echo Errorcode              = %errorcode% >>"%CrashFile%\CRASH_REPORT.log"
 echo SysBit                 = x%SysBit% >>"%CrashFile%\CRASH_REPORT.log"
 set v=
@@ -55,7 +65,7 @@ echo PROCESSOR ARCHITECTURE = %PROCESSOR_ARCHITECTURE% >>"%CrashFile%\CRASH_REPO
 echo OS Center              = %OS% >>"%CrashFile%\CRASH_REPORT.log"
 echo Command Spec           = %ComSpec% >>"%CrashFile%\CRASH_REPORT.log"
 echo Temp File              = %temp% >>"%CrashFile%\CRASH_REPORT.log"
-echo App Ver                = %AppVer% >>"%CrashFile%\CRASH_REPORT.log"
+echo App Ver                = %Ver% >>"%CrashFile%\CRASH_REPORT.log"
 if %IsGotUAC%_==1_ (echo UAC Admin              = True >>"%CrashFile%\CRASH_REPORT.log") else (echo UAC Admin              = False >>"%CrashFile%\CRASH_REPORT.log")
 echo CPU NAME               = %PROCESSOR_ARCHITECTURE% >>"%CrashFile%\CRASH_REPORT.log"
 echo CPU INFO               = %PROCESSOR_ARCHITEW6432% >>"%CrashFile%\CRASH_REPORT.log"
@@ -89,5 +99,5 @@ echo.
 echo  Any key to open error info.
 echo   ERROR_INFO_FILE=%CrashFile%
 pause>nul
-api\OpenURL.exe -e -u %CrashFile%
+api\OpenURL.exe -e -u %CrashFile%\CRASH_REPORT.log
 exit 1 /b

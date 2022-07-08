@@ -1,6 +1,6 @@
 rem 设置版本号
 rem 20xx.xx指20xx年的x月第x个更新
-set ver=Dev.2022.6a
+set ver=Dev.2022.7b
 set y=2022
 goto HEAD
 
@@ -31,16 +31,6 @@ set tmp\="%temp%\CSBB\"
 set tempFiles="%temp%\CSBB"
 set tempFiles\="%temp%\CSBB\"
 md %tempFiles%
-rem 检查py是否安装
-python --version
-if not "%errorlevel%" neq "0" (
-    rem python已安装
-    set api.py=1
-) else (
-    rem python未安装
-    set api.py=0
-    api\taskbarmsg.exe 10000;;CSBB - 没有安装python#@3;;没有检测到Python的安装，部分功能将无法使用。\n\nERROR COMMAND:\npython ^<[HERE]\n^<!^> 未知的命令或外部程序;;explorer.exe http://www.python.org/download;;
-)
 goto CSBB/menu
 
 :getUACAdmin
@@ -104,17 +94,16 @@ echo         Welcome to [Changing SYS by Bat]
 echo.
 echo.    [1] 系统外观
 echo.    [2] 实用工具
-echo     [3] #部分木马病毒专杀/预防工具#                              (Test Version)
 echo     [P] 启动 Windows 系统评估
 echo.
-echo     [S] 设置
+@REM echo     [S] 设置
 echo.    [A] 关于……
 echo     [I] 联系我们
 echo     [Q/E] EXIT
 echo  Made by kdXiaoyi. %y%版权所有
 echo ================================================================================
 echo SysBit=x%SysBit%
-api\choice.exe /c B123PSAIQELH /N /M 从中选择一项^>
+api\choice.exe /c B12PSAIQEL /N /M 从中选择一项^>
 if %ERRORLEVEL%==0 (
     rem 用户中断操作。
     echo NO TRUE CHOICE INPUT
@@ -132,14 +121,13 @@ if %ERRORLEVEL%==1 (
 if %ERRORLEVEL%==12 api\openurl.exe -u https://space.bilibili.com/1987247870
 if %ERRORLEVEL%==2 goto sys_show/menu
 if %ERRORLEVEL%==3 goto sysUsefull/menu
-if %ERRORLEVEL%==4 call SubBatch\Virus_Defender.bat
-if %ERRORLEVEL%==5 call SubBatch\winsat.bat
-if %ERRORLEVEL%==6 call SubBatch\settings.bat
-if %ERRORLEVEL%==7 goto CSBB/about
-if %ERRORLEVEL%==8 goto CSBB/Issues
+if %ERRORLEVEL%==4 call SubBatch\winsat.bat
+@REM if %ERRORLEVEL%==5 call SubBatch\settings.bat
+if %ERRORLEVEL%==6 goto CSBB/about
+if %ERRORLEVEL%==7 goto CSBB/Issues
+if %ERRORLEVEL%==8 goto CSBB/exit.sure
 if %ERRORLEVEL%==9 goto CSBB/exit.sure
-if %ERRORLEVEL%==10 goto CSBB/exit.sure
-if %ERRORLEVEL%==11 api\openurl.exe -u https://gitee.com/kdXiaoyi/changing-sys-by-bat/blob/master/LICENSE/
+if %ERRORLEVEL%==10 api\openurl.exe -u https://gitee.com/kdXiaoyi/changing-sys-by-bat/blob/master/LICENSE/
 goto CSBB/menu
 
 :sys_show/menu
