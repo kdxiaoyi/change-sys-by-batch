@@ -2,7 +2,7 @@
 
 ### 介绍
 
-`BATCH(*.Bat)`是一种存在于MSDOS与Windows的脚本，可以快速执行指定的命令，而这个工程让它更有意义(尽管它已被`Powershell(*.ps1)`取代)。你可以通过这个工具快速部署并完成系统更改。
+![kdXiaoyi/Change System By Batch](https://gitee.com/kdXiaoyi/changing-sys-by-bat/widgets/widget_card.svg?colors=36c8b0,ffffff,ffffff,49b19f,000000,9b9b9b)
 
 ### 下载
 你可以使用两种方式来下载CSBB。这两种方式各有不同。详情请看下表：
