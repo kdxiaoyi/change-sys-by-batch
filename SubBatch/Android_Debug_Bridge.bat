@@ -39,11 +39,13 @@ cls
 if %ERRORLEVEL%==1 (
     echo 这里提交的参数将作为adb.exe的参数。
     echo 你可以使用[#exit] （小写，不带括号）退出
+	set input=-help
     goto adb
 )
 if %ERRORLEVEL%==2 (
     echo 这里提交的参数将作为fastboot.exe的参数。
     echo 你可以使用[#exit] （小写，不带括号）退出
+	set input=-help
     goto fb
 )
 if %ERRORLEVEL%==3 (
@@ -64,7 +66,6 @@ rem ↑FOR /F "options"          %variable IN ('command')                        
 goto menu
 
 :adb
-set input=-help
 set /p input= #ADB ^> 
 if "%input%"=="#exit" goto menu
 api\Android_Debug_Bridge\adb.exe %input%

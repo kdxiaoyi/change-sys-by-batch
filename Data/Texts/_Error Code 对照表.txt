@@ -8,7 +8,7 @@ Error Number (函数返回码)
 ================================================================================
 Error Code (报错码)
 ================================================================================
-CSBB/API:Choice.ErrorEffect
+CSBB/API:Choice.BackErrorCode
   choice api 返回了一个错误值
 CSBB/main:Debug.BOOM
   调试崩溃
@@ -18,6 +18,4 @@ csbb/#Unknow_Subname_Space#:#Unknow_Name#
   Unknow Error Info.
 CSBB/ntsd:no.ntsd.file
   找不到NTSD的API
-CSBB/winSAT:NotTrulyWindowsVersion
-  不正确的WinSAT版本
 ================================================================================

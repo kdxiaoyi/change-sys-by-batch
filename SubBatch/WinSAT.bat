@@ -1,9 +1,6 @@
 @echo off
 echo.
-@REM if NOT EXIST %windir%\system32\winsat.exe (
-@REM     set errorcode=CSBB/winSAT:NotTrulyWindowsVersion
-@REM     call subbatch\errorscreen.bat
-@REM )
+if not "%sysbit%"=="64" if not "%sysbit%"=="86" exit /b 1
 goto winsat/menu
 
 rem Win7中WinSAT的帮助文本如下

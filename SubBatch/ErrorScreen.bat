@@ -90,4 +90,4 @@ echo  Any key to open error info.
 echo   ERROR_INFO_FILE=%CrashFile%
 pause>nul
 api\OpenURL.exe -e -u %CrashFile%
-exit
+exit 1 /b

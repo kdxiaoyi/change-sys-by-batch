@@ -30,6 +30,17 @@ set tmp="%temp%\CSBB"
 set tmp\="%temp%\CSBB\"
 set tempFiles="%temp%\CSBB"
 set tempFiles\="%temp%\CSBB\"
+md %tempFiles%
+rem 检查py是否安装
+python --version
+if not "%errorlevel%" neq "0" (
+    rem python已安装
+    set api.py=1
+) else (
+    rem python未安装
+    set api.py=0
+    api\taskbarmsg.exe 10000;;CSBB - 没有安装python#@3;;没有检测到Python的安装，部分功能将无法使用。\n\nERROR COMMAND:\npython ^<[HERE]\n^<!^> 未知的命令或外部程序;;explorer.exe http://www.python.org/download;;
+)
 goto CSBB/menu
 
 :getUACAdmin
@@ -94,22 +105,23 @@ echo.
 echo.    [1] 系统外观
 echo.    [2] 实用工具
 echo     [3] #部分木马病毒专杀/预防工具#                              (Test Version)
-echo     [S] 启动 Windows 系统评估
+echo     [P] 启动 Windows 系统评估
 echo.
-echo.    [A] About us
-echo     [I] Issues us
+echo     [S] 设置
+echo.    [A] 关于……
+echo     [I] 联系我们
 echo     [Q/E] EXIT
 echo  Made by kdXiaoyi. %y%版权所有
 echo ================================================================================
 echo SysBit=x%SysBit%
-api\choice.exe /c P12AQE3SHI /N /M 从中选择一项^>
+api\choice.exe /c B123PSAIQELH /N /M 从中选择一项^>
 if %ERRORLEVEL%==0 (
     rem 用户中断操作。
     echo NO TRUE CHOICE INPUT
 )
 if %ERRORLEVEL%==255 (
     rem CHOICE.exe发出错误状态码
-    set ERRORCODE=CSBB/API:Choice.ErrorEffect
+    set ERRORCODE=CSBB/API:Choice.BackErrorCode
     call subbatch\errorscreen.bat
 )
 if %ERRORLEVEL%==1 (
@@ -117,35 +129,37 @@ if %ERRORLEVEL%==1 (
     set errorcode=CSBB/main:Debug.BOOM
     call subbatch\errorscreen.bat
 )
+if %ERRORLEVEL%==12 api\openurl.exe -u https://space.bilibili.com/1987247870
 if %ERRORLEVEL%==2 goto sys_show/menu
 if %ERRORLEVEL%==3 goto sysUsefull/menu
-if %ERRORLEVEL%==4 goto CSBB/about
-if %ERRORLEVEL%==5 goto CSBB/exit.sure
-if %ERRORLEVEL%==6 goto CSBB/exit.sure
-if %ERRORLEVEL%==7 call SubBatch\Virus_Defender.bat
-if %ERRORLEVEL%==8 call SubBatch\winsat.bat
-if %ERRORLEVEL%==9 api\openurl.exe https://gitee.com/kdXiaoyi/changing-sys-by-bat/blob/master/LICENSE/
-if %ERRORLEVEL%==10 goto CSBB/Issues
+if %ERRORLEVEL%==4 call SubBatch\Virus_Defender.bat
+if %ERRORLEVEL%==5 call SubBatch\winsat.bat
+if %ERRORLEVEL%==6 call SubBatch\settings.bat
+if %ERRORLEVEL%==7 goto CSBB/about
+if %ERRORLEVEL%==8 goto CSBB/Issues
+if %ERRORLEVEL%==9 goto CSBB/exit.sure
+if %ERRORLEVEL%==10 goto CSBB/exit.sure
+if %ERRORLEVEL%==11 api\openurl.exe -u https://gitee.com/kdXiaoyi/changing-sys-by-bat/blob/master/LICENSE/
 goto CSBB/menu
 
 :sys_show/menu
 cls
-echo ^> 系统外观菜单
+echo ^> 系统外观
 echo ================================================================================
 echo         Welcome to [Changing SYS by Bat]
 echo.
-echo.    [A] 禁用快捷方式小箭头
-echo.    [B] 启用↑
+echo.    [J] 禁用快捷方式小箭头
+echo.    [X] 启用↑
 echo     [1] 右键菜单中的显卡设置菜单管理
 echo     [U] 弹出[成功升级Windows]窗口
 echo     [C] 右键菜单中新增/移除[复制路径]选项
-echo     [E] 为Windows 8+启用Aero效果
+echo     [A] 为Windows 8+启用Aero效果
 echo.
 echo.    [0] 返回
 echo  Made by kdXiaoyi. %y%版权所有
 echo ================================================================================
 echo SysBit=x%SysBit%
-api\choice.exe /c 0AB1UCE /N /M 从中选择一项^>
+api\choice.exe /c 0JX1UCA /N /M 从中选择一项^>
 echo.
 if %ERRORLEVEL%==2 (
     rem 杀桌面管理器进程
@@ -190,7 +204,7 @@ goto sys_show_menu
 
 :sysUsefull/menu
 cls
-echo ^> 系统实用
+echo ^> 实用工具
 echo ================================================================================
 echo         Welcome to [Changing SYS by Bat]
 echo.
@@ -204,7 +218,7 @@ echo.    [0] 返回
 echo  Made by kdXiaoyi. %y%版权所有
 echo ================================================================================
 echo SysBit=x%SysBit%
-api\choice.exe /c 0CANRT /N /M 从中选择一项^>
+api\choice.exe /c 0CANRTI /N /M 从中选择一项^>
 if %ERRORLEVEL%==1 goto CSBB/menu
 if %ERRORLEVEL%==2 (
     cls
