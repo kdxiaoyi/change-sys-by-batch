@@ -1,6 +1,6 @@
 rem 设置版本号
 rem 20xx.xx指20xx年的x月第x个更新
-set ver=Dev.2022.7b
+set ver=Dev.2022.7c
 set y=2022
 goto HEAD
 
