@@ -115,7 +115,7 @@ set /p input=^>
 echo.
 tasklist /fo csv /fi "pid eq %input%"
 echo.
-start /wait "CSBB/ntsd:kill.pid" api\ntsd.exe -p %input%
+start /wait "CSBB/ntsd:kill.pid" api\ntsd.exe -c q -p %input%
 echo.
 echo Finish Work.
 ping 127.0.0.1 -n 3 >nul

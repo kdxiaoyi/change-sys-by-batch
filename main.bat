@@ -139,7 +139,7 @@ echo.
 echo.    [J] 禁用快捷方式小箭头
 echo.    [X] 启用↑
 echo     [1] 右键菜单中的显卡设置菜单管理
-echo     [U] 弹出[成功升级Windows]窗口
+@REM echo     [U] 弹出[成功升级Windows]窗口
 echo     [C] 右键菜单中新增/移除[复制路径]选项
 echo     [A] 为Windows 8+启用Aero效果
 echo.
