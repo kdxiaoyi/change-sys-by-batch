@@ -99,11 +99,12 @@ echo.
 @REM echo     [S] 设置
 echo.    [A] 关于……
 echo     [I] 联系我们
+echo     [H] 软件首页(白嫖Github)
 echo     [Q/E] EXIT
 echo  Made by kdXiaoyi. %y%版权所有
 echo ================================================================================
 echo SysBit=x%SysBit%
-api\choice.exe /c B12PSAIQEL /N /M 从中选择一项^>
+api\choice.exe /c B12PSAIQELH /N /M 从中选择一项^>
 if %ERRORLEVEL%==0 (
     rem 用户中断操作。
     echo NO TRUE CHOICE INPUT
@@ -127,7 +128,8 @@ if %ERRORLEVEL%==6 goto CSBB/about
 if %ERRORLEVEL%==7 goto CSBB/Issues
 if %ERRORLEVEL%==8 goto CSBB/exit.sure
 if %ERRORLEVEL%==9 goto CSBB/exit.sure
-if %ERRORLEVEL%==10 api\openurl.exe -u https://gitee.com/kdXiaoyi/changing-sys-by-bat/blob/master/LICENSE/
+if %ERRORLEVEL%==10 api\openurl.exe -u http://gitee.com/kdXiaoyi/changing-sys-by-bat/blob/master/LICENSE/
+if %ERRORLEVEL%==10 api\openurl.exe -u http://kdxiaoyi.github.io/change-sys-by-bat/
 goto CSBB/menu
 
 :sys_show/menu
