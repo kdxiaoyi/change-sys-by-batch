@@ -10,8 +10,8 @@
 你可以使用两种方式来下载CSBB。这两种方式各有不同。详情请看下表：
 | 发行版 | 预览通道 |
 |-----|------|
-|前往下载发行版。这些版本的BUG相对bate版本较少。|前往Gitee的仓库Clone页面下载zip文件。解压即用。注意此版本可能有点不稳定。因为这是随仓库的上传而 **实时** 更新的。|
-|[huang1111网盘](https://pan.huang1111.cn/s/oVYkF8)|[Gitee的Clone界面](https://gitee.com/kdXiaoyi/changing-sys-by-bat/repository/archive/master.zip)|
+|前往下载发行版。这些版本的BUG相对bate版本较少。|前往Github的仓库Clone页面下载zip文件。解压即用。注意此版本可能有点不稳定。因为这是随仓库的上传而 **实时** 更新的。|
+|[huang1111网盘](https://pan.huang1111.cn/s/oVYkF8)|[Github的Clone界面](http://github.com/kdXiaoyi/change-sys-by-bat/archive/refs/heads/master.zip)|
 
 ### 运行需求
 
