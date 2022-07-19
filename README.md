@@ -29,4 +29,3 @@ Windows x86/x64 带有cmd.exe组件的即可运行。部分功能仅Windows7支�
 |[提交Issue给我们](http://github.com/kdXiaoyi/change-sys-by-bat/issues/new) 或 [查看全部的Issues](http://github.com/kdXiaoyi/change-sys-by-bat/issues)|
 |[给我们写信(需要登陆QQ)](https://mail.qq.com/cgi-bin/qm_share?t=qm_mailme^&email=9cTHzMTDwcPBxcS1hITblpqY)|
 |[腾讯兔小巢 - 用户反馈](https://support.qq.com/product/412030/) |
-
