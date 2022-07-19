@@ -2,6 +2,8 @@
 
 ### 介绍
 
+如果你在Github上看到了这个会不会觉得这很神奇？
+
 ![kdXiaoyi/Change System By Batch](https://gitee.com/kdXiaoyi/changing-sys-by-bat/widgets/widget_card.svg?colors=36c8b0,ffffff,ffffff,49b19f,000000,9b9b9b)
 
 ### 下载
@@ -24,13 +26,7 @@ Windows x86/x64 带有cmd.exe组件的即可运行。部分功能仅Windows7支�
 |联系我们的方式|
 |---|
 |[开发者B站主页](https://space.bilibili.com/1987247870)|
-|[提交Issue给我们](https://gitee.com/kdXiaoyi/changing-sys-by-bat/issues/new) 或 [查看全部的Issues](http://gitee.com/kdXiaoyi/changing-sys-by-bat/issues/)|
+|[提交Issue给我们](http://github.com/kdXiaoyi/change-sys-by-bat/issues/new) 或 [查看全部的Issues](http://github.com/kdXiaoyi/change-sys-by-bat/issues)|
 |[给我们写信(需要登陆QQ)](https://mail.qq.com/cgi-bin/qm_share?t=qm_mailme^&email=9cTHzMTDwcPBxcS1hITblpqY)|
 |[腾讯兔小巢 - 用户反馈](https://support.qq.com/product/412030/) |
-
-
-
-
-
-
 

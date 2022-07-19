@@ -268,7 +268,7 @@ echo ^> CSBB问题反馈
 echo ================================================================================
 echo         Welcome to [Changing SYS by Bat]
 echo.
-echo.    [1] 提交Issues (需要登录到Gitee)
+echo.    [1] 提交Issues (需要登录到Github)
 echo     [2] 提交电子邮件 (需要登录到QQ)
 echo     [3] 查看全部的Issues
 echo.
@@ -279,8 +279,8 @@ echo SysBit=x%SysBit%
 api\choice.exe /c 0123 /N /M 从中选择一项^>
 @REM cls
 if "%ERRORLEVEL%"=="1" goto csbb/menu
-if "%ERRORLEVEL%"=="2" api\openurl.exe -u http://gitee.com/kdXiaoyi/changing-sys-by-bat/issues/new
+if "%ERRORLEVEL%"=="2" api\openurl.exe -u http://github.com/kdXiaoyi/change-sys-by-bat/issues/new
 if "%ERRORLEVEL%"=="3" api\openurl.exe -u http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme^&email=9cTHzMTDwcPBxcS1hITblpqY
-if "%ERRORLEVEL%"=="4" api\openurl.exe -u http://gitee.com/kdXiaoyi/changing-sys-by-bat/issues?state=all
+if "%ERRORLEVEL%"=="4" api\openurl.exe -u http://github.com/kdXiaoyi/change-sys-by-bat/issues/
 cls
 goto csbb/menu
