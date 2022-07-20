@@ -284,7 +284,7 @@ api\choice.exe /c 01234 /N /M 从中选择一项^>
 if "%ERRORLEVEL%"=="1" goto csbb/menu
 if "%ERRORLEVEL%"=="2" api\openurl.exe -u http://github.com/kdXiaoyi/change-sys-by-bat/issues/new
 if "%ERRORLEVEL%"=="3" api\openurl.exe -u http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme^&email=9cTHzMTDwcPBxcS1hITblpqY
-if "%ERRORLEVEL%"=="4" api\openurl.exe -u http://github.com/kdXiaoyi/change-sys-by-bat/issues/
+if "%ERRORLEVEL%"=="4" api\openurl.exe -u http://github.com/kdXiaoyi/change-sys-by-batch/issues/new/choose
 if "%ERRORLEVEL%"=="5" api\openurl.exe -u http://github.com/kdXiaoyi/change-sys-by-batch/discussions
 cls
 goto csbb/menu
