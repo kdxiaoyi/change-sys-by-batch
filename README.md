@@ -14,9 +14,7 @@
 
 前往下载发行版。这些版本的BUG相对bate版本较少。
 
-[huang1111网盘](https://pan.huang1111.cn/s/oVYkF8) 或 [Github Releases](http://github.com/kdXiaoyi/change-sys-by-batch/releases/)
-
-这两个版本唯一区别是huang1111包括DEV/BETA版本，而Github Releases仅包括正式版本。
+[Github Releases](http://github.com/kdXiaoyi/change-sys-by-batch/releases/)
 
 ##### 预览通道
 前往Github的仓库Clone页面下载zip文件。解压即用。注意此版本可能有点不稳定。因为这是随仓库的上传而 **实时** 更新的。
