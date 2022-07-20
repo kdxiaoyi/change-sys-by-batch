@@ -1,4 +1,4 @@
-# Changing SYS by Bat
+# Change SYS by Batch
 
 ### 介绍
 
