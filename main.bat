@@ -273,16 +273,18 @@ echo.
 echo.    [1] 提交Issues (需要登录到Github)
 echo     [2] 提交电子邮件 (需要登录到QQ)
 echo     [3] 查看全部的Issues
+echo     [4] 前往在线论坛
 echo.
 echo.    [0] 返回
 echo  Made by kdXiaoyi. %y%版权所有
 echo ================================================================================
 echo SysBit=x%SysBit%
-api\choice.exe /c 0123 /N /M 从中选择一项^>
+api\choice.exe /c 01234 /N /M 从中选择一项^>
 @REM cls
 if "%ERRORLEVEL%"=="1" goto csbb/menu
 if "%ERRORLEVEL%"=="2" api\openurl.exe -u http://github.com/kdXiaoyi/change-sys-by-bat/issues/new
 if "%ERRORLEVEL%"=="3" api\openurl.exe -u http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme^&email=9cTHzMTDwcPBxcS1hITblpqY
 if "%ERRORLEVEL%"=="4" api\openurl.exe -u http://github.com/kdXiaoyi/change-sys-by-bat/issues/
+if "%ERRORLEVEL%"=="5" api\openurl.exe -u http://github.com/kdXiaoyi/change-sys-by-batch/discussions
 cls
 goto csbb/menu
