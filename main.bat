@@ -1,6 +1,6 @@
 rem 设置版本号
 rem 20xx.xx指20xx年的x月第x个更新
-set ver=Dev.2022.7c
+set ver=Dev.2022.7d
 set y=2022
 goto HEAD
 
@@ -59,6 +59,23 @@ set IsGotUACAdmin=1
 set IsGetUACAdmin=1
 goto CSBB/api.load
 
+:CSBB/updata
+cls
+echo ^> 检查更新
+echo ================================================================================
+echo.
+echo         正在连接到Github.io以检查更新
+echo.
+echo       如不能检查更新，请使用Steam++加速Github站点(FREE n.自由)
+echo.
+echo  请在接下来的窗口中继续
+echo ================================================================================
+echo %cd%
+pause
+start /d %cd% /min /wait api\updater\CSBB_updater.exe %ver%
+pause
+goto csbb/menu
+
 :CSBB/about
 cls
 echo ^> About us
@@ -95,16 +112,17 @@ echo.
 echo.    [1] 系统外观
 echo.    [2] 实用工具
 echo     [P] 启动 Windows 系统评估
+echo     [W] Windows 11 专区                      #BETA VERSION#
 echo.
 @REM echo     [S] 设置
 echo.    [A] 关于……
 echo     [I] 联系我们
-echo     [H] 软件首页(白嫖Github)
+echo     [U] 检查更新
 echo     [Q/E] EXIT
 echo  Made by kdXiaoyi. %y%版权所有
 echo ================================================================================
 echo SysBit=x%SysBit%
-api\choice.exe /c B12PSAIQELH /N /M 从中选择一项^>
+api\choice.exe /c B12PSAIQELUW /N /M 从中选择一项^>
 if %ERRORLEVEL%==0 (
     rem 用户中断操作。
     echo NO TRUE CHOICE INPUT
@@ -119,7 +137,7 @@ if %ERRORLEVEL%==1 (
     set errorcode=CSBB/main:Debug.BOOM
     call subbatch\errorscreen.bat
 )
-if %ERRORLEVEL%==12 api\openurl.exe -u https://space.bilibili.com/1987247870
+
 if %ERRORLEVEL%==2 goto sys_show/menu
 if %ERRORLEVEL%==3 goto sysUsefull/menu
 if %ERRORLEVEL%==4 call SubBatch\winsat.bat
@@ -129,7 +147,8 @@ if %ERRORLEVEL%==7 goto CSBB/Issues
 if %ERRORLEVEL%==8 goto CSBB/exit.sure
 if %ERRORLEVEL%==9 goto CSBB/exit.sure
 if %ERRORLEVEL%==10 api\openurl.exe -u http://gitee.com/kdXiaoyi/changing-sys-by-bat/blob/master/LICENSE/
-if %ERRORLEVEL%==10 api\openurl.exe -u http://kdxiaoyi.github.io/change-sys-by-bat/
+if %ERRORLEVEL%==11 goto CSBB/updata
+if %ERRORLEVEL%==12 call SubBatch\win11.bat
 goto CSBB/menu
 
 :sys_show/menu
@@ -266,7 +285,7 @@ goto sysUsefull/ramEmpty.menu
 
 :CSBB/Issues
 cls
-echo ^> CSBB问题反馈
+echo ^> 联系我们
 echo ================================================================================
 echo         Welcome to [Changing SYS by Bat]
 echo.
@@ -274,17 +293,19 @@ echo.    [1] 提交Issues (需要登录到Github)
 echo     [2] 提交电子邮件 (需要登录到QQ)
 echo     [3] 查看全部的Issues
 echo     [4] 前往在线论坛
+echo     [5] 网站首页
 echo.
 echo.    [0] 返回
 echo  Made by kdXiaoyi. %y%版权所有
 echo ================================================================================
 echo SysBit=x%SysBit%
-api\choice.exe /c 01234 /N /M 从中选择一项^>
+api\choice.exe /c 012345 /N /M 从中选择一项^>
 @REM cls
 if "%ERRORLEVEL%"=="1" goto csbb/menu
 if "%ERRORLEVEL%"=="2" api\openurl.exe -u http://github.com/kdXiaoyi/change-sys-by-bat/issues/new
 if "%ERRORLEVEL%"=="3" api\openurl.exe -u http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme^&email=9cTHzMTDwcPBxcS1hITblpqY
 if "%ERRORLEVEL%"=="4" api\openurl.exe -u http://github.com/kdXiaoyi/change-sys-by-batch/issues/new/choose
 if "%ERRORLEVEL%"=="5" api\openurl.exe -u http://github.com/kdXiaoyi/change-sys-by-batch/discussions
+if "%ERRORLEVEL%"=="6" api\openurl.exe -u http://kdxiaoyi.github.io/change-sys-by-bat/
 cls
 goto csbb/menu

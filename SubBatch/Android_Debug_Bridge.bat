@@ -137,7 +137,7 @@ ATTRIB +r +a +s %windir%\Adb.setup_log.txt
 echo.
 echo Setup Okay
 echo.
-api\taskbarmsg.exe 600000;;CSBB：[安装ADB]已完成#@2;;任务[安装ADB]已完成\n \n你可以点击我来打开报告信息。\n位置%windir%\Adb.setup_log.txt;;notepad.exe %windir%\Adb.setup_log.txt
+api\taskbarmsg.exe [安装ADB]已完成 任务[安装ADB]已完成\n报告位置:%windir%\Adb.setup_log.txt 2 notepad.exe %windir%\Adb.setup_log.txt
 ping 127.0.0.1 -n 6 >nul
 goto menu
 
