@@ -31,6 +31,9 @@ set tmp\="%temp%\CSBB\"
 set tempFiles="%temp%\CSBB"
 set tempFiles\="%temp%\CSBB\"
 md %tempFiles%
+rem 读运行用户
+for /f %%i in ('whoami') do set user=%%i
+set whoami=%user%
 goto CSBB/menu
 
 :getUACAdmin
@@ -109,6 +112,7 @@ echo ^> 主菜单
 echo ================================================================================
 echo         Welcome to [Changing SYS by Bat]
 echo.
+echo     [0] Shell
 echo.    [1] 系统外观
 echo.    [2] 实用工具
 echo     [P] 启动 Windows 系统评估
@@ -122,7 +126,7 @@ echo     [Q/E] EXIT
 echo  Made by kdXiaoyi. %y%版权所有
 echo ================================================================================
 echo SysBit=x%SysBit%
-api\choice.exe /c B12PSAIQELUW /N /M 从中选择一项^>
+api\choice.exe /c B12PSAIQELUW0 /N /M 从中选择一项^>
 if %ERRORLEVEL%==0 (
     rem 用户中断操作。
     echo NO TRUE CHOICE INPUT
@@ -149,6 +153,7 @@ if %ERRORLEVEL%==9 goto CSBB/exit.sure
 if %ERRORLEVEL%==10 api\openurl.exe -u http://gitee.com/kdXiaoyi/changing-sys-by-bat/blob/master/LICENSE/
 if %ERRORLEVEL%==11 goto CSBB/updata
 if %ERRORLEVEL%==12 call SubBatch\win11.bat
+if %ERRORLEVEL%==12 call SubBatch\shell
 goto CSBB/menu
 
 :sys_show/menu

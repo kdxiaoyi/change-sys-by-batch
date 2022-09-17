@@ -23,6 +23,11 @@
 
 [Github的Clone界面](http://github.com/kdXiaoyi/change-sys-by-bat/archive/refs/heads/master.zip)
 
+### 构建
+我们提供了一个轻量级脚本用来构建CSBB发行版。
+
+请参阅：[`!_创建发行版.bat`](https://github.com/kdXiaoyi/change-sys-by-batch/blob/master/!_%E5%88%9B%E5%BB%BA%E5%8F%91%E8%A1%8C%E7%89%88.BAT)
+
 ### 运行需求
 
 Windows x86/x64 带有cmd.exe组件的即可运行。部分功能仅Windows7支持(Win10部分版本会弹出缺少组件的问题)。

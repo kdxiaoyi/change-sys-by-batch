@@ -45,7 +45,7 @@ echo SysBit=x%SysBit%
 api\choice.exe /c 120 /N /M 从中选择一项^>
 if %ERRORLEVEL%==1 goto win11/taskbar.size
 if %ERRORLEVEL%==2 goto win11/taskbar.pos
-if %ERRORLEVEL%==3 goto win11/taskbar
+if %ERRORLEVEL%==3 goto win11/menu
 goto win11/taskbar
 
 :win11/taskbar.size

@@ -13,7 +13,7 @@ md %output%\
 timeout /t 1 /nobreak >nul
 echo [%time%/INFO] 复制工作文件 ^| xcopy :
 xcopy "%cd%" ..\CSBB-Release\ /E /H /Y /F
-echo [%time%/INFO] 删除Git操作历史与配置文件 ^| del :
+echo [%time%/INFO] 删除Git操作历史与配置文件 ^| del .git
 del %output%\.git\ /F /Q /S
 echo [%time%/INFO] 删除不必要文件 ^| del
 del %output%\.github\ /F /Q /S
@@ -22,6 +22,7 @@ del %output%\api_version.html /F /Q
 del %output%\!_创建发行版.BAT /F /Q
 del %output%\.git\ /Q
 del %output%\.github\ /Q
+del %output%\API\_API.Code /Q
 cd ..
 cd /d CSBB-Release\
 echo [%time%/INFO] 移除空文件夹 ^| PS/remove-item
@@ -29,6 +30,8 @@ attrib -r -s -h .git /S /D
 echo A|powershell remove-item .\.git\
 attrib -r -s -h .github /S /D
 echo A|powershell remove-item .\.github\
+attrib -r -s -h api\_API.Code /S /D
+echo A|powershell remove-item .\api\_API.Code\
 echo [%time%/INFO] 打包文件 ^| 7z :
 start "打包文件" /wait api\7zip\7z.exe a -bt output_packed.zip %cd%
 echo [%time%/INFO] 创建发行版结束
